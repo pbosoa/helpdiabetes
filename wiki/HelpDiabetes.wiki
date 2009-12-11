@@ -1,0 +1,12 @@
+#labels Featured
+Carbohydrate counter for Android
+
+= Introduction =
+
+HelpDiabetes is a carb counter application. You measure the ingredients, enter them in the application and it will calculate for you the amount of carbohydrates. For people with diabetes, it can also calculate the amount of insulin needed.
+It also calculates the amounts of fat, proteins and kilocalories.
+
+
+= Details =
+
+to be completed
