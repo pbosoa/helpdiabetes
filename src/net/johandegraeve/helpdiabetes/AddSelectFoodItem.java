@@ -195,7 +195,7 @@ public class AddSelectFoodItem extends Activity{
 	        public void onClick(View v) {
 	            if (choseamount.getText().length() == 0)
 	        	choseamount.setText("0");
-	            if (choseamount.getText().charAt(0) == '.')
+	            if ((choseamount.getText().charAt(0) == '.') && (choseamount.getText().length() == 1)) 
 	        	choseamount.setText("0");
 	            selectedFoodItem.setChosenAmount(Float.parseFloat(choseamount.getText().toString()));
 	            SelectedFoodItemDatabase db = new SelectedFoodItemDatabase(thisContext);
