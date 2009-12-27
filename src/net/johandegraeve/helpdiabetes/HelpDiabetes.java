@@ -91,7 +91,10 @@ public class HelpDiabetes extends ListActivity {
 	if (databaseList() == null || databaseList().length == 0) {
 	    new AlertDialog.Builder(thisContext)
 	    .setTitle(R.string.licence_info)
-	    .setMessage("HelpDiabetes " + getResources().getString(R.string.version) + " " + getResources().getString(R.string.license_message_part))
+	    .setMessage("HelpDiabetes " + 
+		    getResources().getString(R.string.version) + " " + 
+		    getResources().getString(R.string.version_number) + " " + 
+		    getResources().getString(R.string.license_message_part))
 	    .setPositiveButton(R.string.accept_license,new DialogInterface.OnClickListener() {
 		public void onClick(DialogInterface dialog, int whichButton)
 		{
@@ -189,7 +192,9 @@ public class HelpDiabetes extends ListActivity {
 	case R.id.Info_Screen_menu_item:
 	    new AlertDialog.Builder(thisContext)
 	    .setTitle(R.string.info_screen_title)
-	    .setMessage("HelpDiabetes " + getResources().getString(R.string.version) + " " + 
+	    .setMessage("HelpDiabetes " + 
+		    getResources().getString(R.string.version) + " " +
+		    getResources().getString(R.string.version_number) + " " +
 		    getResources().getString(R.string.info_screen_message) + fooditemlist.getFoodTableSource())
 	    .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
 		public void onClick(DialogInterface dialog, int whichButton) {;}

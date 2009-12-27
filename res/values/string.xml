@@ -19,7 +19,8 @@
   additional information or have any questions.
 -->
 <resources>
-	<string name="version">Version 0.9"</string>
+	<string name="version">Version"</string>
+	<string name="version_number">0.9.1</string>
     <string name="app_name">HelpDiabetes</string>
 	<string name="maximumFoodItemLength">512</string>
 	<string name="maximumSearchStringLength">20</string>
