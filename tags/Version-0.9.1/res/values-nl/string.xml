@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2009  Johan Degraeve
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/gpl.txt>.
+    
+  Please contact Johan Degraeve at johan.degraeve@johandegraeve.net if you need
+  additional information or have any questions.
+-->
+<resources>
+	<string name="version">Versie"</string>
+	<string name="app_name">HelpDiabetes</string>
+	<string name="maximumFoodItemLength">512</string>
+	<string name="maximumSearchStringLength">20</string>
+	<string name="main_no_items">..bezig met het lezen van het voedingsmiddelenbestand..</string>
+	<string name="add_selected_fooditem_activity_name">Voedingsmiddel geselecteerd</string>
+	<string name="selected_food_item_list_activity_name">Mijn selecties</string>
+	<string name="choseamnt">Kies hoeveelheid :</string>
+	<string name="result">Resultaat :</string>
+	<string name="contains">bevat</string>
+	<string name="amount_of_carbs">gram koolhydraten</string>
+	<string name="amount_of_fats">gram vet</string>
+	<string name="amount_of_proteins">gram proteïnen</string>
+	<string name="amount_of_kcal">kilocalorieën</string>
+	<string name="Save_chosen_amount">Ok</string>
+	<string name="no_selected_items">'Mijn Selecties' is leeg</string>
+	<string name="title_showlist">Selecties</string>
+	<string name="title_empty_list">Leegmaken</string>
+	<string name="title_calculate_total">Bereken</string>
+	<string name="title_select_unit">Kies eenheid</string>
+	<string name="view_totals_activity_name">Totalen voor Mijn Selecties</string>
+	<string name="the_selection_contains">Mijn selecties bevatten</string>
+	<string name="confirm_empty_list">'Mijn Selecties' leegmaken ?</string>
+	<string name="licence_info">Licentieovereenkomst</string>
+	<string name="accept_license">Doorgaan</string>
+	<string name="license_message_part">is een koolhydratenteller voor mensen met diabetes.\n
+	\n
+	Copyright (C) 2009  Johan Degraeve\n
+	\n
+	Dit programma is vrije software: je mag het herdistribueren en/of wijzigen onder
+de voorwaarden van de GNU Algemene Publieke Licentie zoals gepubliceerd
+door de Free Software Foundation, onder versie 3 van de Licentie of (naar jouw
+keuze) elke latere versie.\n
+Dit programma is gedistribueerd in de hoop dat het nuttig zal zijn maar ZONDER
+ENIGE GARANTIE; zelfs zonder de impliciete garanties die GEBRUIKELIJK
+ZIJN IN DE HANDEL of voor BRUIKBAARHEID VOOR EEN SPECIFIEK DOEL.
+Zie de GNU Algemene Publieke Licentie voor meer details.\n
+Je hoort een kopie van de GNU Algemene Publieke Licentie te hebben
+ontvangen samen met dit programma. Als dat niet het geval is, zie http://www.gnu.org/licenses/gpl.txt.</string>
+	<string name="title_info_screen">Info</string>
+	<string name="info_screen_title">HelpDiabetes Info</string>
+	<string name="info_screen_message">is een koolhydratenteller voor mensen met diabetes.\n
+	\n
+    Copyright (C) 2009  Johan Degraeve\n
+    \n
+    Vrijgegeven onder de voorwaarden van de GNU Algemene Publieke Licentie zoals
+    gepubliceerd door de Free Software Foundation, onder versie 3 of elke latere versie.\n
+    \n
+    Voor meer informatie, bezoek http://www.johandegraeve.net/android of stuur een e-mail naar
+    johan.degraeve@johandegraeve.net.\n
+    \n
+    Bron van de voedingsmiddelentabel :
+    </string>
+    
+</resources>
