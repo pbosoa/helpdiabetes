@@ -19,8 +19,8 @@
   additional information or have any questions.
 -->
 <resources>
-	<string name="version">Versie 0.9"</string>
-    <string name="app_name">HelpDiabetes</string>
+	<string name="version">Versie"</string>
+	<string name="app_name">HelpDiabetes</string>
 	<string name="maximumFoodItemLength">512</string>
 	<string name="maximumSearchStringLength">20</string>
 	<string name="main_no_items">..bezig met het lezen van het voedingsmiddelenbestand..</string>
