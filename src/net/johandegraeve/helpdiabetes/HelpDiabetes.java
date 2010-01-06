@@ -65,8 +65,11 @@ public class HelpDiabetes extends ListActivity {
     /**
      * tag to be used by any method in this classs, when using {@link android.util.Log}
      */
-    @SuppressWarnings("unused")
-    private static final String LOG_TAG = "HD-HelpDiabetes";
+    private static final String TAG = "HelpDiabetes";
+    /**
+     * set to true for debugging
+     */
+    private static final boolean D = true;
 
     /**
      * Static used in {@link #handleEmptyList()}, which is used for asking the user if list of selections should be emptied.
@@ -84,6 +87,7 @@ public class HelpDiabetes extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
+        if(D) Log.e(TAG, "+++ ON CREATE +++");
 	thisContext = this;
 	setContentView(R.layout.helpdiabetes);
 	fooditemlist = null;
@@ -234,4 +238,56 @@ public class HelpDiabetes extends ListActivity {
 	})
 	.show();
     }
+    
+    /**
+     * overriding purely for logging
+     * @see android.app.Activity#onMenuItemSelected(int, android.view.MenuItem)
+     */
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(D) Log.e(TAG, "++ ON START ++");
+    }
+
+    /**
+     * overriding purely for logging
+     * @see android.app.Activity#onResume()
+     */
+    @Override
+    public synchronized void onResume() {
+        super.onResume();
+        if(D) Log.e(TAG, "++ ON RESUME ++");
+    }
+
+    /**
+     * overriding purely for logging
+     * @see android.app.Activity#onPause()
+     */
+    @Override
+    public synchronized void onPause() {
+        super.onPause();
+        if(D) Log.e(TAG, "- ON PAUSE -");
+    }
+
+    /**
+     * overriding purely for logging
+     * @see android.app.Activity#onStop()
+     */
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(D) Log.e(TAG, "-- ON STOP --");
+    }
+
+    /**
+     * overriding purely for logging
+     * @see android.app.Activity#onDestroy()
+     */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(D) Log.e(TAG, "--- ON DESTROY ---");
+    }
+
+
 }
