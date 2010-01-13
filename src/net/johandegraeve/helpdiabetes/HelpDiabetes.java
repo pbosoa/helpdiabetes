@@ -41,7 +41,7 @@ import android.widget.ListView;
  * This is the activity class which will define the main screen with the list of
  * fooditems, from which user can select, and also menu options are defined here
  *
- * @version 1.0
+ * @version 1.1
  * @author Johan Degraeve
  *
  */
