@@ -29,7 +29,7 @@
 	<string name="selected_food_item_list_activity_name">My Selections</string>
 	<string name="choseamnt">Choose amount :</string>
 	<string name="result">Result :</string>
-	<string name="contains">contains</string>
+	<string name="contains">contain</string>
 	<string name="amount_of_carbs">grams of carbs</string>
 	<string name="amount_of_fats">grams of fat</string>
 	<string name="amount_of_proteins">grams of proteins</string>
@@ -64,7 +64,7 @@
 	<string name="title_info_screen">About</string>
 	<string name="info_screen_title">About HelpDiabetes</string>
 	<string name="info_screen_message">is a carb counter for people with diabetes.\n
-    Copyright (C) 2009  Johan Degraeve
+    Copyright (C) 2010  Johan Degraeve
     \n
     Released under the terms of the GNU General Public License as published
     by the Free Software Foundation, either version 3, or any later version.

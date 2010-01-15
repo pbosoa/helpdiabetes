@@ -304,17 +304,10 @@ public class SelectedFoodItemDatabase {
     public void cleanUp() {
 	ContentValues values;
 	open();
-	if (itemDatabase == null) {
-	    open();
 	    values = new ContentValues();
 	    values.put("Deleted", 1);
 	    itemDatabase.update(SELECTED_ITEM_TABLE_NAME, values, null, null);
-	    close();
-	} else {
-	    values = new ContentValues();
-	    values.put("Deleted", 1);
-	    itemDatabase.update(SELECTED_ITEM_TABLE_NAME, values, null, null);
-	}
+
 	close();
     }
     
