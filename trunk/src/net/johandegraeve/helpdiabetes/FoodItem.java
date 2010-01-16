@@ -221,7 +221,7 @@ public class FoodItem implements Comparable <FoodItem> {
      * @param newfooditem
      */
     public FoodItem(FoodItem newfooditem) {
-	this.itemDescription = new String(newfooditem.getItemDescription());
+	this.itemDescription = newfooditem.getItemDescription();
 	this.unitList = new ArrayList<Unit>();
 	for (int i = 0;i < newfooditem.getNumberOfUnits(); i++) {
 	    this.unitList.add(new Unit(newfooditem.getUnit(i)));
@@ -234,35 +234,34 @@ public class FoodItem implements Comparable <FoodItem> {
      * @param firstUnit the unit to be added
      */
     public FoodItem(String itemDescription, Unit firstUnit) {
-	this.itemDescription = new String(itemDescription);
+	this.itemDescription = itemDescription;
 	this.unitList = new ArrayList<Unit>();
 	this.unitList.add(new Unit(firstUnit));
     }
     
     /**
-     *  returns a new String with the ItemDescription
+     *  returns the ItemDescription
      * @see java.lang.Object#toString()
      * @return a new String with the ItemDescription
      */
     public String toString()  {
-	return new String(itemDescription);
+	return itemDescription;
     }
 
     /**
-     *  returns a new String with the ItemDescription
+     *  returns the ItemDescription
      * @return the a new String with the ItemDescription
      */
     public String getItemDescription () {
-	return new String(this.itemDescription);
+	return this.itemDescription;
     }
 
     /**
      * sets ItemDescription
-     * @param newDescription String with the new ItemDescription, a copy is taken so the 
-     * input parameter can be deleted or updated by the caller.
+     * @param newDescription String with the new ItemDescription
      */
     public  void setItemDescription (String newDescription) {
-	itemDescription = new String(newDescription);
+	itemDescription = newDescription;
     }
 
     /**

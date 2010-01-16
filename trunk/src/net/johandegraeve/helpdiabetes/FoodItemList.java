@@ -28,6 +28,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,7 +50,7 @@ import android.widget.TextView;
  * In addition, in such cases, it will be possible to retrieve an error or warning string via the method  {@link #getWarningMessage()}, which
  * can be shown to the user.<br>
  * 
- * @version 1.0
+ * @version 2.0
  * @author Johan Degraeve
  */
 public class FoodItemList extends ArrayAdapter<String> {
@@ -98,11 +99,15 @@ public class FoodItemList extends ArrayAdapter<String> {
     private Context callingContext;
 
     /**
-     * tag to be used by any method in this calss, when using {@link android.util.Log}
+     * tag to be used by any method in this classs, when using {@link android.util.Log}
      */
-    private static final String LOG_TAG = "HD-FoodItemList";
-    
+    private static final String TAG = "FoodItemList";
     /**
+     * set to true for debugging
+     */
+    private static final boolean D = true;
+
+     /**
      * Thread used for any long time tasks that need to be executed in the background
      */
     private Thread backgroundThread;
@@ -117,6 +122,13 @@ public class FoodItemList extends ArrayAdapter<String> {
      * ongoing. Returned by {@link #getWarningMessage()}
      */
     private String warningMessage;
+    
+    /**
+     * This Bundle will hold the fooditemlist, anytime the fooditemlist changes, the Bundle needs to be recreated.<br>
+     * It is to be used by the creator, which is in this application the activity HelpDiabetes, which will need the bundle
+     * to handle onPause
+     */
+    private Bundle bundledFoodItemList;
 
     /**
      * Creates FoodItemList with an empty fooditemlist.<br>
@@ -146,14 +158,14 @@ public class FoodItemList extends ArrayAdapter<String> {
     }
 
     /**
-     * @return string array with new Strings containing all {@link FoodItem#getItemDescription() FoodItemDescriptions} for 
+     * @return string array of Strings containing all {@link FoodItem#getItemDescription() FoodItemDescriptions} for 
      * all fooditems in the list.
      */
     String[] getListOfFoodItemDescriptions() {
 	int size = foodItemList.size();
 	String[] returnvalue = new String[size];
 	for (int i = 0;i<size;i++) {
-	    returnvalue[i] = new String(foodItemList.get(i).getItemDescription());
+	    returnvalue[i] = foodItemList.get(i).getItemDescription();
 	}
 	return returnvalue;
     }
@@ -358,17 +370,17 @@ public class FoodItemList extends ArrayAdapter<String> {
     }
 
     /**
-     * @return a new string with the foodTableSource
+     * @return foodTableSource
      */
     public  String getFoodTableSource() {
-	return new String(foodTableSource);
+	return foodTableSource;
     }
 
     /**
      * @param foodTableSource the foodTableSource to set
      */
     public  void setFoodTableSource(String foodTableSource) {
-	this.foodTableSource = new String(foodTableSource);
+	this.foodTableSource = foodTableSource;
     }
 
     /**
@@ -377,7 +389,7 @@ public class FoodItemList extends ArrayAdapter<String> {
      * @return the ItemDescription
      */
     public String getFoodItemDescription(int foodItemNumber) {
-	return (new String(getFoodItem_private(foodItemNumber).getItemDescription()));
+	return getFoodItem_private(foodItemNumber).getItemDescription();
     }
 
     /**
@@ -391,21 +403,27 @@ public class FoodItemList extends ArrayAdapter<String> {
 
     /**
      * the  {@link #backgroundThread} is started and executes {@link #initialize() initialize}. 
+     * @param savedBundle if not null then this Bundle will be used to intialize the fooditemlist in stead of the source
+     * file on disk. 
      * 
      */
-    public void  initializeFoodItemList()  {
+    public void  initializeFoodItemList(Bundle savedBundle)  {
 	final FoodItemList thislist = this;
+	//bundleFoodItemList is intialized to savedBunbdle. If savedBundle = null then it will not be used
+	//if not null then this bundle will be used to initialize the fooditemlist in stead of the foodfile on disk.
+	bundledFoodItemList = savedBundle;
 	backgroundThread = new Thread(new Runnable() {
 	    public void run() {
-		thislist.initialize( );
+		thislist.initialize();
 	    }
 	});
 	backgroundThread.start();
     }
 
     /**
-     * initializes {@link #foodItemList} using raw resource file as source. When finished, an update of the parent class
-     * list will be done, by calling {@link #updateList()} in the UI Thread.
+     * initializes {@link #foodItemList}. If {@link #bundledFoodItemList} is null, then raw resource file will be 
+     * used as source. If {@link #bundledFoodItemList} not null then the bundle will be used.
+     * When finished, an update of the calling ActivityList will be done, by calling {@link #updateList()} in the UI Thread.
      */
     private void initialize()  {
 	byte [] b;
@@ -415,70 +433,76 @@ public class FoodItemList extends ArrayAdapter<String> {
 	Resources resources = callingContext.getResources();
 	InputStream is = null;
 	String readline;
-	@SuppressWarnings("unused")
-	int nroflinesinsource;
 	int readLineNumber = 0;
 	int length, chr;
 	foodItemList = new ArrayList<FoodItem>();
 
-	try {
-	    Log.i(LOG_TAG, "Opening source foodfile");
-	    is = resources.openRawResource(R.raw.foodfile);
-	    b = new byte[maxblength];
-	    //First read the timestamp, I'm not going to do anything with it'
-	    readline = readStringFromFile(is);
-	    //Now read the source of the food table
-	    readline = readStringFromFile(is);
-	    foodTableSource = readline.substring(0,readline.indexOf(','));
-	    // Now read the number of lines in the source file - this is to set a progress gauge if any
-	    readline = readStringFromFile(is);
-	    nroflinesinsource = Integer.parseInt(readline.substring(0,readline.indexOf(',')));
-	    //start reading all the remaining lines from the foodfile
-	    b = new byte[maxblength];
-	    length = 1;//start value needs to be > 1
-	    chr = 0;//start value needs to be different from -1
-
-	    //as long as end of file not reached continue
-	    //as long as line is read which contains characters continue
-	    //as long as number of stored bytes is less than maximum recordsize
-	    while ((chr != -1) && (length > 0) ){
-		length = 0;
-		chr = is.read();
-		if (chr == ',') 
-		{break;}//chr = , means the first empty line, that's where we stop'
-		while ((chr != -1) & (chr != '\n')) {
-		    if (chr != '\r') {//this LF seems to be there each time before \n
-			b[length] = (byte)chr;
-			length++;
-		    }
-		    chr = is.read();
-		}
-		if (length > 0) {
-		    //means we've successfully read a line which contains something
-		    readLineNumber = readLineNumber + 1;
-		    try {
-			FoodItem newitem = new FoodItem(b);
-			foodItemList.add(newitem);
-			//Log.i(LOG_TAG, "fooditem \""  + newitem.toString() + "\" read from the sourcefile");
-		    } catch (InvalidSourceLineException e) {
-			// TODO handle exceptions, for example store them locally in the class FoodItemListClass
-			// and offer a method to read the errors.
-			 e.printStackTrace();
-			Log.i(LOG_TAG,"Exception while constructing FoodItem, sourceLine b = \"" + b.toString() + "\", Linenumber = " + readLineNumber + " on position " + e.getPosition());
-
-		    }
-		}
+	if (bundledFoodItemList != null) {
+	    // get the fooditemlist from the bundle
+	    foodTableSource = bundledFoodItemList.getString("foodTableSource");
+	    int amount = bundledFoodItemList.getInt("amountOfFoodItems");
+	    for (int count = 0;count < amount;count++) {
+		foodItemList.add(FoodItem.fromBundle(bundledFoodItemList.getBundle("fooditem"  + Integer.toString(count))));
+		// copied from to bundle bundledFoodItemList.putBundle("fooditem"  + Integer.toString(count), foodItemList.get(count).toBundle());
 	    }
-	    Log.i(LOG_TAG,"Closing source foodfile");
-	    is.close();
+	} else { //get the fooditemlist from the source file on disk
+	    try {
+		if (D) Log.e(TAG, "Opening source foodfile");
+		is = resources.openRawResource(R.raw.foodfile);
+		b = new byte[maxblength];
+		//First read the timestamp, I'm not going to do anything with it'
+		readline = readStringFromFile(is);
+		//Now read the source of the food table
+		readline = readStringFromFile(is);
+		foodTableSource = readline.substring(0,readline.indexOf(','));
+		// Now read the number of lines in the source file - this is to set a progress gauge if any
+		// this is not used in the Android verison of the application
+		readline = readStringFromFile(is);
+		//start reading all the remaining lines from the foodfile
+		b = new byte[maxblength];
+		length = 1;//start value needs to be > 1
+		chr = 0;//start value needs to be different from -1
 
+		//as long as end of file not reached continue
+		//as long as line is read which contains characters continue
+		//as long as number of stored bytes is less than maximum recordsize
+		while ((chr != -1) && (length > 0) ){
+		    length = 0;
+		    chr = is.read();
+		    if (chr == ',') 
+		    {break;}//chr = , means the first empty line, that's where we stop'
+		    while ((chr != -1) & (chr != '\n')) {
+			if (chr != '\r') {//this LF seems to be there each time before \n
+			    b[length] = (byte)chr;
+			    length++;
+			}
+			chr = is.read();
+		    }
+		    if (length > 0) {
+			//means we've successfully read a line which contains something
+			readLineNumber = readLineNumber + 1;
+			try {
+			    FoodItem newitem = new FoodItem(b);
+			    foodItemList.add(newitem);
+			    //Log.i(LOG_TAG, "fooditem \""  + newitem.toString() + "\" read from the sourcefile");
+			} catch (InvalidSourceLineException e) {
+			    // TODO handle exceptions, for example store them locally in the class FoodItemListClass
+			    // and offer a method to read the errors.
+			    e.printStackTrace();
+			    if (D) Log.e(TAG,"Exception while constructing FoodItem, sourceLine b = \"" + b.toString() + "\", Linenumber = " + readLineNumber + " on position " + e.getPosition());
 
-	} catch (IOException e) {
-	    Log.d ("FoodItemList.initialize", "Could not open Raw Resource file " +callingContext.getString(R.raw.foodfile), e);
-	} finally {
-	    try { is.close();} catch (IOException e) {;}
+			}
+		    }
+		}
+		if (D) Log.e(TAG,"Closing source foodfile");
+		is.close();
+
+	    } catch (IOException e) {
+		Log.d ("FoodItemList.initialize", "Could not open Raw Resource file " +callingContext.getString(R.raw.foodfile), e);
+	    } finally {
+		try { is.close();} catch (IOException e) {;}
+	    }
 	}
-
 	if (callingContext != null) {
 	    final Runnable runInUIThread = new Runnable() {
 		public void run() {
@@ -489,7 +513,14 @@ public class FoodItemList extends ArrayAdapter<String> {
 	} else {
 	    //now initialize lastIndex
 	    lastIndex[0] = foodItemList.size() - 1;
-	    Log.i(LOG_TAG,"lastIndex[0] = " + lastIndex[0] );
+	    Log.d(TAG,"lastIndex[0] = " + lastIndex[0] );
+	}
+	
+	//now put the whole fooditemlist object in a Bundle, this will not happen in the UIThread
+	//off course only do this of the bundle = null
+	if (bundledFoodItemList == null) {
+	    if (D) Log.e(TAG,"saving fooditemlist to Bundle");
+	    bundledFoodItemList = toBundle();
 	}
     }
 
@@ -651,7 +682,7 @@ public class FoodItemList extends ArrayAdapter<String> {
      * user may have been entering text in the search box.
      */
     private void updateList() {
-	Log.i(LOG_TAG,"method updateList called");	
+	if (D) Log.e(TAG,"method updateList called");	
 	lastIndex[0] = foodItemList.size() - 1;
 	previousSearchString = null;
 	clear();
@@ -661,5 +692,28 @@ public class FoodItemList extends ArrayAdapter<String> {
 	((HelpDiabetes)callingContext).triggerSearching();
     }
     
+    /**
+     * puts the fooditemlist in a Bundle. Goal is that this Bundle can be used to recreate the list in stead of the source
+     * file on disk. So it will keep the fooditems and the foodTablesource
+     * @return the fooditemlist in a Bundle
+     */
+    private Bundle toBundle() {
+    
+	Bundle returnvalue  = new Bundle();
+	for (int count = 0;count < foodItemList.size();count++) {
+	    returnvalue.putBundle("fooditem"  + Integer.toString(count), foodItemList.get(count).toBundle());
+	}
+	returnvalue.putString("foodTableSource", foodTableSource);
+	returnvalue.putInt("amountOfFoodItems", foodItemList.size());
+	
+	return returnvalue;
+    }
+    
+    /**
+     * @return the bundledFoodItemList
+     */
+    public Bundle getBundledFoodItemList() {
+	return bundledFoodItemList;
+    }
 }
 

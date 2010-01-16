@@ -91,7 +91,7 @@ public class HelpDiabetes extends ListActivity {
 	thisContext = this;
 	setContentView(R.layout.helpdiabetes);
 	fooditemlist = null;
-	setupViews();
+	setupViews(savedInstanceState);
 	if (databaseList() == null || databaseList().length == 0) {
 	    new AlertDialog.Builder(thisContext)
 	    .setTitle(R.string.licence_info)
@@ -111,8 +111,9 @@ public class HelpDiabetes extends ListActivity {
     
     /**
      * Sets up the views, and initializes the fooditemlist if null
+     * @param savedInstanceState saved bundle
      */
-    private void setupViews() {
+    private void setupViews(Bundle savedInstanceState) {
 	searchTextView = (EditText) findViewById(R.id.SearchTextView);
 	if (searchTextViewString != null)
 	    if (searchTextViewString.length() > 0) {
@@ -138,7 +139,9 @@ public class HelpDiabetes extends ListActivity {
 
 	if (fooditemlist == null) {
 	    fooditemlist = new FoodItemList(this, R.layout.helpdiabetesrow, Integer.parseInt(this.getString(R.string.maximumSearchStringLength)));
-	    fooditemlist.initializeFoodItemList( );
+	    //fooditemlist.initializeFoodItemList( savedInstanceState != null ? savedInstanceState.getBundle("fooditemlist"):null);
+	    //not calling following method with the bundle because it doesn't solve my problem when using this.
+	    fooditemlist.initializeFoodItemList(null);
 	    setListAdapter(fooditemlist);
 	} else {
 	    setListAdapter(fooditemlist);
@@ -153,7 +156,7 @@ public class HelpDiabetes extends ListActivity {
     @Override
     public void onConfigurationChanged (Configuration newConf) {
 	super.onConfigurationChanged(newConf);
-	setupViews();
+	setupViews(null);
     }
 
     /**
@@ -288,6 +291,27 @@ public class HelpDiabetes extends ListActivity {
         super.onDestroy();
         if(D) Log.e(TAG, "--- ON DESTROY ---");
     }
+
+    /**
+     * overriding purely for logging
+     * @see android.app.Activity#onSaveInstanceState(Bundle)
+     */
+    @Override
+    public void onSaveInstanceState(Bundle savedBundle) {
+        super.onSaveInstanceState( savedBundle);
+        if(D) Log.e(TAG, "--- ON SaveInstanceState ---");
+    }
+
+    /**
+     * overriding purely for logging
+     * @see android.app.Activity#onRestoreInstanceState(Bundle)
+     */
+    @Override
+    public void onRestoreInstanceState(Bundle savedBundle) {
+        super.onRestoreInstanceState( savedBundle);
+        if(D) Log.e(TAG, "--- ON restoreInstanceState ---");
+    }
+
 
 
 }
