@@ -23,7 +23,7 @@
 	<string name="app_name">HelpDiabetes</string>
 	<string name="maximumFoodItemLength">512</string>
 	<string name="maximumSearchStringLength">20</string>
-	<string name="main_no_items">..bezig met het lezen van het voedingsmiddelenbestand..</string>
+	<string name="main_no_items">..bezig met lezen van het voedingsmiddelenbestand..</string>
 	<string name="add_selected_fooditem_activity_name">Voedingsmiddel geselecteerd</string>
 	<string name="selected_food_item_list_activity_name">Mijn selecties</string>
 	<string name="choseamnt">Kies hoeveelheid :</string>
