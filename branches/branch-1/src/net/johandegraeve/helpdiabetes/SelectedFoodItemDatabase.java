@@ -14,8 +14,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/gpl.txt>.
  *    
- *  Please contact Johan Degraeve at johan.degraeve@johandegraeve.net if you need
- *  additional information or have any questions.
+ *  Please contact  Johan Degraeve at johan.degraeve@johandegraeve.net if you need
+ *  additional information  or have any questions.
  */
 package net.johandegraeve.helpdiabetes;
 
