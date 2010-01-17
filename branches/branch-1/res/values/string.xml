@@ -20,7 +20,7 @@
 -->
 <resources>
 	<string name="version">Version"</string>
-	<string name="version_number">0.9.2</string>
+	<string name="version_number">1.0.0</string>
     <string name="app_name">HelpDiabetes</string>
 	<string name="maximumFoodItemLength">512</string>
 	<string name="maximumSearchStringLength">20</string>
@@ -75,4 +75,18 @@
     Source of the Food Composition Table :
     </string>
     
+    <!--  new texts added in version 1.0.0 -->
+    <!--  new menu item in activity helpdiabetes -->
+    <string name="title_settings">Settings</string>
+    
+    <!--  activity name for preferences-->
+    <string name="preferences_activity_name">Settings</string>
+    <!--  first category is the category for insulineratios (amounts of insulin/grams of carbs, timing breakfast to dinner etc. -->
+    	<!-- the title -->
+		<string name="preferences_insulineratios_title">Carb to Insulin Ratios</string>
+    		<!-- first setting in this category is the breakfastratio -->
+			<string name="breakfastratio">Breakfast - how many gram of carbs per unit of insuline ?</string>
+    <!--  second category is layout prameters -->
+    	<!-- the title -->
+    		<string name="preferences_layout_title">Layout</string>
 </resources>

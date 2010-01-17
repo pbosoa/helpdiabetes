@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Copyright (C) 2009  Johan Degraeve
+<!--   Copyright (C) 2010  Johan Degraeve
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,15 +17,17 @@
   Please contact Johan Degraeve at johan.degraeve@johandegraeve.net if you need
   additional information or have any questions.
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/ShowList_menu_item"
-		android:title="@string/title_showlist" />
-	<item android:id="@+id/EmptyList_menu_item"
-		android:title="@string/title_empty_list" />
-	<item android:id="@+id/CalculateTotal_menu_item"
-		android:title="@string/title_calculate_total" />
-	<item android:id="@+id/Info_Screen_menu_item"
-		android:title="@string/title_info_screen" />
-	<item android:id="@+id/Settings_menu_item"
-		android:title="@string/title_settings" />
-</menu>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/preferences_insulineratios_title">
+    <PreferenceScreen
+    android:title="@string/preferences_insulineratios_title">
+		<EditTextPreference
+			android:title="@string/breakfastratio"
+			android:defaultValue="0"
+			android:key="breakfastratio" />    
+	</PreferenceScreen>
+    </PreferenceCategory>
+	<PreferenceCategory android:title="@string/preferences_layout_title">
+    </PreferenceCategory>
+</PreferenceScreen>

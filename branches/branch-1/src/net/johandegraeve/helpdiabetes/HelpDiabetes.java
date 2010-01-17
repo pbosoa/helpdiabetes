@@ -185,9 +185,10 @@ public class HelpDiabetes extends ListActivity {
      */
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
+	Intent newIntent;
 	switch (item.getItemId()) {
 	case R.id.ShowList_menu_item:
-	    Intent newIntent = new Intent(this, SelectedFoodItemList.class);
+	    newIntent = new Intent(this, SelectedFoodItemList.class);
 	    startActivity( newIntent);
 	    return true;
 	case R.id.EmptyList_menu_item:
@@ -207,6 +208,10 @@ public class HelpDiabetes extends ListActivity {
 		public void onClick(DialogInterface dialog, int whichButton) {;}
 	    })
 	    .show();
+	case R.id.Settings_menu_item:
+	    newIntent = new Intent(this, MyPreferencesActivity.class);
+	    startActivity( newIntent);
+	    return true;
 	}
 	return super.onMenuItemSelected(featureId, item);
     }

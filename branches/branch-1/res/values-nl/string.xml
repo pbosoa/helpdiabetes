@@ -72,5 +72,8 @@ ontvangen samen met dit programma. Als dat niet het geval is, zie http://www.gnu
     \n
     Bron van de voedingsmiddelentabel :
     </string>
+
+    <!--  new texts added in version 1.0.0 -->
+    <string name="preferences_activity_name">Instellingen</string>
     
 </resources>
