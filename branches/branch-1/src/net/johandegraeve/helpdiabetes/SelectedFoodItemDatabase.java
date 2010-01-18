@@ -97,15 +97,15 @@ public class SelectedFoodItemDatabase {
 	KEY_ID + " integer primary key autoincrement, " +
 	KEY_ITEMDESCRIPTION + " text not null, " + 
 	KEY_UNITDESCRIPTION + " text, " +
-	KEY_CARBS + " float, " +
-	KEY_FAT + " float, " +
-	KEY_PROTEIN + " float, " +
+	KEY_CARBS + " double, " +
+	KEY_FAT + " double, " +
+	KEY_PROTEIN + " double, " +
 	KEY_KCAL + " integer, " +
 	KEY_STANDARDAMOUNT + " integer, " + 
 	KEY_UNITWEIGHT + " integer, " +
 	KEY_TIMESTAMP + " text, " +
 	KEY_DELETED + " integer, " +
-	KEY_CHOSENAMOUNT + " float); ";
+	KEY_CHOSENAMOUNT + " double); ";
     
     /**
      * The context the application is running in, which cna be used for creating the database.
@@ -283,10 +283,10 @@ public class SelectedFoodItemDatabase {
 						        cursor.getInt(UnitWeightColumn), 
 					                cursor.getInt(StandardAmountColumn), 
 						        cursor.getInt(KcalColumn), 
-						        cursor.getFloat(ProteinColumn), 
-						        cursor.getFloat(CarbsColumn), 
-						        cursor.getFloat(FatColumn))),	          
-			          cursor.getFloat(ChosenAmountColumn), 
+						        cursor.getDouble(ProteinColumn), 
+						        cursor.getDouble(CarbsColumn), 
+						        cursor.getDouble(FatColumn))),	          
+			          cursor.getDouble(ChosenAmountColumn), 
 				  0,
 				  cursor.getInt(IdColumn));
 		      i = i  + 1;
@@ -327,13 +327,13 @@ public class SelectedFoodItemDatabase {
      * gets total amount of carbs for the selected FoodItems
      * @return total amount of carbs for the selected FoodItems
      */
-    public float getTotalCarbs() {
+    public double getTotalCarbs() {
 	SelectedFoodItem[] list = getSelectedFoodItemList();
 	
 	if (list == null) {
 	    return 0;
 	} else {
-	    float returnvalue = 0;
+	    double returnvalue = 0;
 	    for (int i = 0;i < list.length; i++ ) {
 		returnvalue = returnvalue +
 			list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getCarbs() *
@@ -348,13 +348,13 @@ public class SelectedFoodItemDatabase {
      * gets total amount of fats for the selected FoodItems
      * @return total amount of fats for the selected FoodItems
      */
-    public float getTotalFats() {
+    public double getTotalFats() {
 	SelectedFoodItem[] list = getSelectedFoodItemList();
 	
 	if (list == null) {
 	    return 0;
 	} else {
-	    float returnvalue = 0;
+	    double returnvalue = 0;
 	    for (int i = 0;i < list.length; i++ ) {
 		returnvalue = returnvalue +
 			list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getFat() *
@@ -369,13 +369,13 @@ public class SelectedFoodItemDatabase {
      * gets total amount of kilocalories for the selected FoodItems
      * @return total amount of kilocalories for the selected FoodItems
      */
-    public float getTotalKcal() {
+    public double getTotalKcal() {
 	SelectedFoodItem[] list = getSelectedFoodItemList();
 	
 	if (list == null) {
 	    return 0;
 	} else {
-	    float returnvalue = 0;
+	    double returnvalue = 0;
 	    for (int i = 0;i < list.length; i++ ) {
 		returnvalue = returnvalue +
 			list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getKcal() *
@@ -390,13 +390,13 @@ public class SelectedFoodItemDatabase {
      * gets total amount of proteins for the selected FoodItems
      * @return total amount of proteins for the selected FoodItems
      */
-    public float getTotalProteins() {
+    public double getTotalProteins() {
 	SelectedFoodItem[] list = getSelectedFoodItemList();
 	
 	if (list == null) {
 	    return 0;
 	} else {
-	    float returnvalue = 0;
+	    double returnvalue = 0;
 	    for (int i = 0;i < list.length; i++ ) {
 		returnvalue = returnvalue +
 			list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getProtein() *

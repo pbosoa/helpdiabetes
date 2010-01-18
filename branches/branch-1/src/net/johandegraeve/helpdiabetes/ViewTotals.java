@@ -19,7 +19,9 @@
  */
 package net.johandegraeve.helpdiabetes;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 
@@ -31,10 +33,17 @@ import android.widget.TextView;
  *
  */
 public class ViewTotals extends Activity {
+    private static final String TAG = "ViewTotals";
+    /**
+     * set to true for debugging
+     */
+    private static final boolean D = true;
+    
     /**
      * Textview to display the totals
      */
     TextView totals;
+    private int insulinRatio;
     
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -54,6 +63,7 @@ public class ViewTotals extends Activity {
 	String toDisplay; 
   	SelectedFoodItemDatabase db1 = new SelectedFoodItemDatabase(this);
 
+  	//first calculate amount of carbs, fats, proteins and kilocalories
 	toDisplay = 
 		 getResources().getString(R.string.the_selection_contains) +
 		 ": \n\n" +
@@ -73,9 +83,30 @@ public class ViewTotals extends Activity {
 		" " +
 		getResources().getString(R.string.amount_of_kcal) +
 		"\n";
-		
+	
+	//now add the necessary amount of insulin if needed
+	//SharedPreferences prefs = getSharedPreferences("net.johandegraeve.helpdiabetes", MODE_PRIVATE);
+	//prefs.getInt("INSULIN_RATIO_BREAKFAST", Preferences.)
+	insulinRatio = Preferences.getInsulinRatioBreakfast(this);
+	if (insulinRatio > 0) {
+	    toDisplay = toDisplay +
+	    "\n" +
+	    getResources().getString(R.string.insulin) + 
+	    ": " +
+	    //round the number of units of insulin to 0.1
+	    ((double)Math.round(db1.getTotalCarbs()/insulinRatio * 10))/10 +
+	    " " +
+	    getResources().getString(R.string.insulinUnits);
+	    
+	}
 	totals.setText(toDisplay);
+	
+	Log.i(TAG,"db1.getTotalCarbs()/insulinRatio = " + db1.getTotalCarbs()/insulinRatio);
+	Log.i(TAG,"db1.getTotalCarbs()/insulinRatio * 10 = " + db1.getTotalCarbs()/insulinRatio * 10);
+	Log.i(TAG,"Math.round(db1.getTotalCarbs()/insulinRatio * 10) = " + Math.round(db1.getTotalCarbs()/insulinRatio * 10));
+	Log.i(TAG,"((double)Math.round(db1.getTotalCarbs()/insulinRatio * 10))/10 = " + ((double)Math.round(db1.getTotalCarbs()/insulinRatio * 10))/10 );
 
+	
 
     }
 

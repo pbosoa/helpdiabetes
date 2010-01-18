@@ -79,12 +79,12 @@ public class SelectedFoodItemDatabaseTest extends AndroidTestCase {
 	SelectedFoodItem selectedItem2 = null;
 	
 	FoodItem retrievedFoodItem = null;
-	float retrievedChosenAmount;
+	double retrievedChosenAmount;
 	int retrievedUnitNumber;
 	
 	//adding "apple (0)", 50.5 grams
 	try {
-	    selectedItem1 = new SelectedFoodItem(new FoodItem(fooditems[29].getBytes()), (float)50.5, 0);
+	    selectedItem1 = new SelectedFoodItem(new FoodItem(fooditems[29].getBytes()), (double)50.5, 0);
 	} catch (InvalidSourceLineException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
@@ -119,7 +119,7 @@ public class SelectedFoodItemDatabaseTest extends AndroidTestCase {
 	    // TODO Auto-generated catch block
 	    e1.printStackTrace();
 	}
-	selectedItem2 = new SelectedFoodItem(test,(float)2, 1);
+	selectedItem2 = new SelectedFoodItem(test,(double)2, 1);
 	
 	testdb.addSelectedFoodItem(selectedItem2);
 	result = testdb.getSelectedFoodItemList();
@@ -150,7 +150,7 @@ public class SelectedFoodItemDatabaseTest extends AndroidTestCase {
 	
 	//adding "apple (0)", 50.5 grams
 	try {
-	    selectedItem1 = new SelectedFoodItem(new FoodItem(fooditems[29].getBytes()), (float)50.5, 0);
+	    selectedItem1 = new SelectedFoodItem(new FoodItem(fooditems[29].getBytes()), (double)50.5, 0);
 	} catch (InvalidSourceLineException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
@@ -159,7 +159,7 @@ public class SelectedFoodItemDatabaseTest extends AndroidTestCase {
 
 	//adding "Bread, white, bake-off, ready to eat", 2 slices , 50 grams per slice
 	try {
-	    selectedItem2 = new SelectedFoodItem(new FoodItem("Bread| white| bake-off| ready to eat,grams=100,100,259.00,9.10,50.20,1.6,slice=50,1,130,4.55,25.1,0.8,,,,,,".getBytes()),(float)2, 1);
+	    selectedItem2 = new SelectedFoodItem(new FoodItem("Bread| white| bake-off| ready to eat,grams=100,100,259.00,9.10,50.20,1.6,slice=50,1,130,4.55,25.1,0.8,,,,,,".getBytes()),(double)2, 1);
 	} catch (InvalidSourceLineException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();

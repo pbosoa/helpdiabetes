@@ -76,16 +76,24 @@
     </string>
     
     <!--  new texts added in version 1.0.0 -->
+   
     <!--  new menu item in activity helpdiabetes -->
     <string name="title_settings">Settings</string>
     
+    <!--  text in screen showing calculations -->
+    <string name="insulin">Insulin</string>
+    <string name="insulinUnits">unit</string>
+   	 
     <!--  activity name for preferences-->
     <string name="preferences_activity_name">Settings</string>
     <!--  first category is the category for insulineratios (amounts of insulin/grams of carbs, timing breakfast to dinner etc. -->
-    	<!-- the title -->
-		<string name="preferences_insulineratios_title">Carb to Insulin Ratios</string>
-    		<!-- first setting in this category is the breakfastratio -->
-			<string name="breakfastratio">Breakfast - how many gram of carbs per unit of insuline ?</string>
+    	<!-- the title that comes as title of a category -->
+		<string name="preferences_insulinratios_title">Carb to Insulin Ratios</string>
+	    	<!-- the title of a screen, also shown in the main preferences page -->
+			<string name="preferences_insulinratios">Ratios</string>
+	    		<!-- first setting in this screen is the breakfastratio -->
+				<string name="breakfastratio_title">Breakfast</string>
+				<string name="breakfastratio_summary">how many gram of carbs per unit of insuline ?</string>
     <!--  second category is layout prameters -->
     	<!-- the title -->
     		<string name="preferences_layout_title">Layout</string>

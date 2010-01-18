@@ -62,17 +62,17 @@ public class Unit {
     /**
      * amount of Proteins in grams, < 0 if amount is unknown 
      */
-    private float protein;
+    private double protein;
     
     /**
      * amount of carbs in grams, always >= 0
      */
-    private float carbs;
+    private double carbs;
     
     /**
      * amount of fat in grams, < 0 if amount is unknown
      */
-    private float fat;
+    private double fat;
 
     /**
      * Creates a Unit. 
@@ -88,9 +88,9 @@ public class Unit {
 	        int unitWeight,
 	        int standardAmount,
 	        int kcal,
-	        float protein,
-	        float carbs,
-	        float fat) {
+	        double protein,
+	        double carbs,
+	        double fat) {
 	this.unitDescription = unitDescription;
 	if (unitWeight >= 0) {
 	    this.unitWeight = unitWeight; 
@@ -169,21 +169,21 @@ public class Unit {
     /**
      * @return protein
      */
-    public float getProtein() {
+    public double getProtein() {
 	return protein;
     }
 
     /**
      * @return carbs
      */
-    public float getCarbs() {
+    public double getCarbs() {
 	return carbs;
     }
 
     /**
      * @return fat
      */
-    public float getFat() {
+    public double getFat() {
 	return fat;
     }
     
@@ -192,10 +192,10 @@ public class Unit {
      */
     public  Bundle toBundle() {
 	Bundle b = new Bundle();
-	b.putFloat("carbs", carbs);
-	b.putFloat("fat", fat);
+	b.putDouble("carbs", carbs);
+	b.putDouble("fat", fat);
 	b.putInt("kcal", kcal);
-	b.putFloat("protein", protein);
+	b.putDouble("protein", protein);
 	b.putInt("standardAmount", standardAmount);
 	b.putString("unitDescription", unitDescription);
 	b.putInt("unitWeight", unitWeight);
@@ -211,9 +211,9 @@ public class Unit {
 			   b.getInt("unitWeight"),
 			   b.getInt("standardAmount"),
 			   b.getInt("kcal"),
-			   b.getFloat("protein"),
-			   b.getFloat("carbs"),
-			   b.getFloat("fat"));
+			   b.getDouble("protein"),
+			   b.getDouble("carbs"),
+			   b.getDouble("fat"));
 	return newunit;
     }	
 }

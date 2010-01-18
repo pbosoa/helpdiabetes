@@ -115,7 +115,7 @@ public class AddSelectFoodItem extends Activity{
      */
     private void SetupView() {
 	Intent startingIntent = getIntent();
-	float toCheckIfInt;
+	double toCheckIfInt;
 
 	Bundle b = startingIntent.getExtras();
 	itIsANewItemToAdd = startingIntent.getBooleanExtra("isItaNewItemToAdd", true);
@@ -150,15 +150,15 @@ public class AddSelectFoodItem extends Activity{
 		if (selectedFoodItem.getChosenAmount() == 0) {
 		    ;
 		} else {
-		    toCheckIfInt = selectedFoodItem.getChosenAmount() - new Float(selectedFoodItem.getChosenAmount()).intValue();
+		    toCheckIfInt = selectedFoodItem.getChosenAmount() - new Double(selectedFoodItem.getChosenAmount()).intValue();
 		    if (toCheckIfInt == 0.0) {
-			String temp = new Float(selectedFoodItem.getChosenAmount()).toString();
+			String temp = new Double(selectedFoodItem.getChosenAmount()).toString();
 			int index = temp.indexOf('.');
 			if (index < 0) index = temp.length() - 1;
-			choseamount.setText(new Float(selectedFoodItem.getChosenAmount()).toString().substring(0, index));
+			choseamount.setText(new Double(selectedFoodItem.getChosenAmount()).toString().substring(0, index));
 		    }
 		    else
-			choseamount.setText(Float.toString(selectedFoodItem.getChosenAmount()));
+			choseamount.setText(Double.toString(selectedFoodItem.getChosenAmount()));
 		}
 		calculateNewResultandUpdateView(choseamount.getText());
 		choseamount.addTextChangedListener(new TextWatcher() {
@@ -173,7 +173,7 @@ public class AddSelectFoodItem extends Activity{
 		    public void afterTextChanged(Editable s) {
 			if (s.length() > 0) {
 			    try {
-				if (Float.parseFloat(s.toString()) > 0) {
+				if (Double.parseDouble(s.toString()) > 0) {
 				if (s.charAt(0) == '0') {
 				    //here's the case where for example s = 05
 				    //in such case remove the 0 so that 05 becomes 5
@@ -197,7 +197,7 @@ public class AddSelectFoodItem extends Activity{
 	        	choseamount.setText("0");
 	            if ((choseamount.getText().charAt(0) == '.') && (choseamount.getText().length() == 1)) 
 	        	choseamount.setText("0");
-	            selectedFoodItem.setChosenAmount(Float.parseFloat(choseamount.getText().toString()));
+	            selectedFoodItem.setChosenAmount(Double.parseDouble(choseamount.getText().toString()));
 	            SelectedFoodItemDatabase db = new SelectedFoodItemDatabase(thisContext);
 	            if (itIsANewItemToAdd) 
 	        	db.addSelectedFoodItem(selectedFoodItem);
@@ -253,8 +253,8 @@ public class AddSelectFoodItem extends Activity{
 			+ " "
 			+ getResources().getString(R.string.contains)
 			+ " "
-			+ ((float)Math.round(
-				Float.parseFloat(s)
+			+ ((double)Math.round(
+				Double.parseDouble(s)
 			* selectedFoodItem.getFoodItem().getUnit(
 				selectedFoodItem.getChosenUnitNumber())
 				.getCarbs()

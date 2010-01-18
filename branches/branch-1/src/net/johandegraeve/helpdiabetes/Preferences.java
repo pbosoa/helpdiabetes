@@ -1,6 +1,7 @@
 package net.johandegraeve.helpdiabetes;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 
 /*
  * TO BE DELETED
@@ -12,7 +13,7 @@ import android.content.Context;
  */
 public class Preferences {
     private static final String KEY_INSULIN_RATIO_BREAKFAST = "INSULIN_RATIO_BREAKFAST";
-    private static final int DEFVALUE_INSULIN_RATIO_BREAKFAST = 0;
+    private static final String DEFVALUE_INSULIN_RATIO_BREAKFAST = "0";
     
     private static final String KEY_INSULIN_RATIO_LUNCH = "INSULIN_RATIO_LUNCH";
     private static final int DEFVALUE_INSULIN_RATIO_LUNCH = 0;
@@ -32,15 +33,15 @@ public class Preferences {
     private static final String KEY_TIME_SNACK_TO_DINNER = "TIME_SNACK_TO_DINNER";
     private static final long DEFVALUE_TIME_SNACK_TO_DINNER = 61200000;
     
-    private static final String PREFERENCES_FILENAME ="HELPDIABETES_PREFERENCES";
+    private static final String PREFERENCES_FILENAME ="net.johandegraeve.helpdiabetes";
     
     static int getInsulinRatioBreakfast(Context ctx) {
-	return ctx.getSharedPreferences(PREFERENCES_FILENAME,Context.MODE_WORLD_READABLE)
-	.getInt(KEY_INSULIN_RATIO_BREAKFAST, DEFVALUE_INSULIN_RATIO_BREAKFAST);
+	return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ctx)
+	.getString(KEY_INSULIN_RATIO_BREAKFAST, DEFVALUE_INSULIN_RATIO_BREAKFAST));
     }
     
     static void setInsulineRatioBreakFast(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME,Context.MODE_WORLD_READABLE)
+	ctx.getSharedPreferences(PREFERENCES_FILENAME,Context.MODE_PRIVATE)
 	.edit() 
 	.putInt(KEY_INSULIN_RATIO_BREAKFAST, newvalue)
 	.commit();
@@ -48,12 +49,12 @@ public class Preferences {
     }
     
     int getInsulinRatioLunch(Context ctx) {
-	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_WORLD_READABLE)
+	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.getInt(KEY_INSULIN_RATIO_LUNCH, DEFVALUE_INSULIN_RATIO_LUNCH);
     }
     
     static void setInsulineRatioLunch(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_WORLD_READABLE)
+	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.edit()
 	.putInt(KEY_INSULIN_RATIO_LUNCH, DEFVALUE_INSULIN_RATIO_LUNCH)
 	.commit();
@@ -61,12 +62,12 @@ public class Preferences {
     }
     
     int getInsulinRatioSnack(Context ctx) {
-	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_WORLD_READABLE)
+	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.getInt(KEY_INSULIN_RATIO_SNACK,DEFVALUE_INSULIN_RATIO_SNACK);
     }
     
     static void setInsulineRatioSnack(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_WORLD_READABLE)
+	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.edit()
 	.putInt(KEY_INSULIN_RATIO_SNACK, DEFVALUE_INSULIN_RATIO_SNACK)
 	.commit();
@@ -74,12 +75,12 @@ public class Preferences {
     }
     
     int getInsulinRatioDinner(Context ctx) {
-	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_WORLD_READABLE)
+	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.getInt(KEY_INSULIN_RATIO_DINNER, DEFVALUE_INSULIN_RATIO_DINNER);
     }
     
     static void setInsulineRatioDinner(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_WORLD_READABLE)
+	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.edit()
 	.putInt(KEY_INSULIN_RATIO_DINNER, DEFVALUE_INSULIN_RATIO_DINNER)
 	.commit();
@@ -87,12 +88,12 @@ public class Preferences {
     }
     
     long getSwitchTimeBreakfastToLunch(Context ctx) {
-	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_WORLD_READABLE)
+	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.getLong(KEY_TIME_BREAKFAST_TO_LUNCH, DEFVALUE_TIME_BREAKFAST_TO_LUNCH);
     }
     
     static void setSwitchTimeBreakfastToLunch(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_WORLD_READABLE)
+	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.edit()
 	.putLong(KEY_TIME_BREAKFAST_TO_LUNCH, DEFVALUE_TIME_BREAKFAST_TO_LUNCH)
 	.commit();
@@ -100,12 +101,12 @@ public class Preferences {
     }
     
     long getSwitchTimeLunchToSnack(Context ctx) {
-	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_WORLD_READABLE)
+	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.getLong(KEY_TIME_LUNCH_TO_SNACK, DEFVALUE_TIME_LUNCH_TO_SNACK);
     }
     
     static void setSwitchTimeLunchToSnack(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_WORLD_READABLE)
+	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.edit()
 	.putLong(KEY_TIME_LUNCH_TO_SNACK, DEFVALUE_TIME_LUNCH_TO_SNACK)
 	.commit();
@@ -113,12 +114,12 @@ public class Preferences {
     }
     
     long getSwitchTimeSnackToDinner(Context ctx) {
-	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_WORLD_READABLE)
+	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.getLong(KEY_TIME_SNACK_TO_DINNER, DEFVALUE_TIME_SNACK_TO_DINNER);
     }
     
     static void setSwitchTimeSnackToDinner(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_WORLD_READABLE)
+	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.edit()
 	.putLong(KEY_TIME_SNACK_TO_DINNER, DEFVALUE_TIME_SNACK_TO_DINNER)
 	.commit();
