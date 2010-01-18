@@ -265,6 +265,7 @@ public class HelpDiabetes extends ListActivity {
     public synchronized void onResume() {
         super.onResume();
         if(D) Log.e(TAG, "++ ON RESUME ++");
+        
     }
 
     /**

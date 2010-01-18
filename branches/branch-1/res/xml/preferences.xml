@@ -23,6 +23,7 @@
     <PreferenceScreen
     android:title="@string/preferences_insulinratios">
 		<EditTextPreference
+			android:id="@+id/InsulinRatioBreakfastEditTextPreference"
 			android:title="@string/breakfastratio_title"
 			android:summary="@string/breakfastratio_summary"
 			android:defaultValue="0"

@@ -12,7 +12,7 @@ import android.preference.PreferenceManager;
  *
  */
 public class Preferences {
-    private static final String KEY_INSULIN_RATIO_BREAKFAST = "INSULIN_RATIO_BREAKFAST";
+    public static final String KEY_INSULIN_RATIO_BREAKFAST = "INSULIN_RATIO_BREAKFAST";
     private static final String DEFVALUE_INSULIN_RATIO_BREAKFAST = "0";
     
     private static final String KEY_INSULIN_RATIO_LUNCH = "INSULIN_RATIO_LUNCH";

@@ -37,7 +37,7 @@ public class ViewTotals extends Activity {
     /**
      * set to true for debugging
      */
-    private static final boolean D = true;
+    private static final boolean D = false;
     
     /**
      * Textview to display the totals
@@ -101,10 +101,10 @@ public class ViewTotals extends Activity {
 	}
 	totals.setText(toDisplay);
 	
-	Log.i(TAG,"db1.getTotalCarbs()/insulinRatio = " + db1.getTotalCarbs()/insulinRatio);
-	Log.i(TAG,"db1.getTotalCarbs()/insulinRatio * 10 = " + db1.getTotalCarbs()/insulinRatio * 10);
-	Log.i(TAG,"Math.round(db1.getTotalCarbs()/insulinRatio * 10) = " + Math.round(db1.getTotalCarbs()/insulinRatio * 10));
-	Log.i(TAG,"((double)Math.round(db1.getTotalCarbs()/insulinRatio * 10))/10 = " + ((double)Math.round(db1.getTotalCarbs()/insulinRatio * 10))/10 );
+	if (D) Log.e(TAG,"db1.getTotalCarbs()/insulinRatio = " + db1.getTotalCarbs()/insulinRatio);
+	if (D) Log.e(TAG,"db1.getTotalCarbs()/insulinRatio * 10 = " + db1.getTotalCarbs()/insulinRatio * 10);
+	if (D) Log.e(TAG,"Math.round(db1.getTotalCarbs()/insulinRatio * 10) = " + Math.round(db1.getTotalCarbs()/insulinRatio * 10));
+	if (D) Log.e(TAG,"((double)Math.round(db1.getTotalCarbs()/insulinRatio * 10))/10 = " + ((double)Math.round(db1.getTotalCarbs()/insulinRatio * 10))/10 );
 
 	
 
