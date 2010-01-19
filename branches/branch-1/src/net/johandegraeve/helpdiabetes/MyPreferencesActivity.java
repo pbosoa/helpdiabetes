@@ -101,6 +101,15 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
         resetInsulineRatioSummary(insulinRatioBreakFastEditTextPreference, 
 	    originalSummaryInsulinRatioBreakFastEditTextPreference,
 	    Integer.toString(Preferences.getInsulinRatioBreakfast(this)));
+        resetInsulineRatioSummary(insulinRatioLunchEditTextPreference, 
+    	    originalSummaryInsulinRatioLunchEditTextPreference,
+    	    Integer.toString(Preferences.getInsulinRatioBreakfast(this)));
+        resetInsulineRatioSummary(insulinRatioSnackEditTextPreference, 
+    	    originalSummaryInsulinRatioSnackEditTextPreference,
+    	    Integer.toString(Preferences.getInsulinRatioBreakfast(this)));
+        resetInsulineRatioSummary(insulinRatioDinnerEditTextPreference, 
+    	    originalSummaryInsulinRatioDinnerEditTextPreference,
+    	    Integer.toString(Preferences.getInsulinRatioBreakfast(this)));
 
     }
 

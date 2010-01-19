@@ -18,19 +18,50 @@
   additional information or have any questions.
 -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="center">
     <PreferenceCategory android:title="@string/preferences_insulinratios_title">
-    <PreferenceScreen
-    android:title="@string/preferences_insulinratios">
-		<EditTextPreference
-			android:id="@+id/InsulinRatioBreakfastEditTextPreference"
-			android:title="@string/breakfastratio_title"
-			android:summary="@string/breakfastratio_summary"
-			android:defaultValue="0"
-			android:persistent="true"
-			android:key="INSULIN_RATIO_BREAKFAST"
-			android:inputType="number" />    
-	</PreferenceScreen>
+	    <PreferenceScreen android:title="@string/preferences_insulinratios">
+        <PreferenceCategory android:title="@string/preferences_insulinratios">
+	    android:title="@string/preferences_insulinratios">
+			<EditTextPreference
+				android:id="@+id/InsulinRatioBreakfastEditTextPreference"
+				android:title="@string/breakfastratio_title"
+				android:summary="@string/ratio_summary"
+				android:defaultValue="0"
+				android:persistent="true"
+				android:key="INSULIN_RATIO_BREAKFAST"
+				android:inputType="number">
+			</EditTextPreference>
+            <EditTextPreference
+                android:id="@+id/InsulinRatioLunchEditTextPreference"
+                android:title="@string/lunchratio_title"
+                android:summary="@string/ratio_summary"
+                android:defaultValue="0"
+                android:persistent="true"
+                android:key="INSULIN_RATIO_LUNCH"
+                android:inputType="number">
+            </EditTextPreference>
+            <EditTextPreference
+                android:id="@+id/InsulinRatioSnackEditTextPreference"
+                android:title="@string/snackratio_title"
+                android:summary="@string/ratio_summary"
+                android:defaultValue="0"
+                android:persistent="true"
+                android:key="INSULIN_RATIO_SNACK"
+                android:inputType="number">
+            </EditTextPreference>
+            <EditTextPreference
+                android:id="@+id/InsulinRatioDinnerEditTextPreference"
+                android:title="@string/dinnerratio_title"
+                android:summary="@string/ratio_summary"
+                android:defaultValue="0"
+                android:persistent="true"
+                android:key="INSULIN_RATIO_DINNER"
+                android:inputType="number">
+            </EditTextPreference>
+		</PreferenceCategory>		    
+		</PreferenceScreen>
     </PreferenceCategory>
 	<PreferenceCategory android:title="@string/preferences_layout_title">
     </PreferenceCategory>
