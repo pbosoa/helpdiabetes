@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.TimePickerPreference;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -56,6 +57,8 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
     String originalSummaryInsulinRatioSnackEditTextPreference;
     EditTextPreference insulinRatioDinnerEditTextPreference;
     String originalSummaryInsulinRatioDinnerEditTextPreference;
+    
+    TimePickerPreference BreakFastToLunchTimePickerPref;
     /**
      * set to true after activity is build for the first time, as soon as any of the ratios is changed, set to false
      * If user choses not to change all ratios, then set back to true.
@@ -96,6 +99,8 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
 
 	insulinRatioDinnerEditTextPreference = (EditTextPreference) findPreference(Preferences.KEY_INSULIN_RATIO_DINNER);
 	originalSummaryInsulinRatioDinnerEditTextPreference = (String) insulinRatioBreakFastEditTextPreference.getSummary();
+	
+	BreakFastToLunchTimePickerPref = (TimePickerPreference) findPreference(Preferences.KEY_TIME_BREAKFAST_TO_LUNCH);
 	
 }
 

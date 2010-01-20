@@ -37,7 +37,7 @@ public class Preferences {
     /**
      * set to true for debugging
      */
-    private static final boolean D = true;
+    private static final boolean D = false;
     
     /**
      * key for preferences
