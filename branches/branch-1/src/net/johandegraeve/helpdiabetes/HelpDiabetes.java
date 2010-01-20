@@ -208,6 +208,7 @@ public class HelpDiabetes extends ListActivity {
 		public void onClick(DialogInterface dialog, int whichButton) {;}
 	    })
 	    .show();
+	    return true;
 	case R.id.Settings_menu_item:
 	    newIntent = new Intent(this, MyPreferencesActivity.class);
 	    startActivity( newIntent);

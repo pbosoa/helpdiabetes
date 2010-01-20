@@ -76,7 +76,10 @@
     </string>
     
     <!--  new texts added in version 1.0.0 -->
-   
+    <string name="change_all_ratios">Assign the new value to all carb ratios ?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    
     <!--  new menu item in activity helpdiabetes -->
     <string name="title_settings">Settings</string>
     

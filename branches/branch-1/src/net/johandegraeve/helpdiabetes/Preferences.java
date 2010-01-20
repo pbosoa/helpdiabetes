@@ -21,6 +21,7 @@ package net.johandegraeve.helpdiabetes;
 
 import android.content.Context;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 /**
  * 
@@ -32,6 +33,12 @@ import android.preference.PreferenceManager;
  *
  */
 public class Preferences {
+    private static final String TAG = "Preferences";
+    /**
+     * set to true for debugging
+     */
+    private static final boolean D = true;
+    
     /**
      * key for preferences
      */
@@ -44,34 +51,34 @@ public class Preferences {
     /**
      * key for preferences
      */
-    private static final String KEY_INSULIN_RATIO_LUNCH = "INSULIN_RATIO_LUNCH";
+    public static final String KEY_INSULIN_RATIO_LUNCH = "INSULIN_RATIO_LUNCH";
     /**
      * Default value
      */
-    private static final int DEFVALUE_INSULIN_RATIO_LUNCH = 0;
+    private static final String DEFVALUE_INSULIN_RATIO_LUNCH = "0";
     
     /**
      * key for preferences
      */
-    private static final String KEY_INSULIN_RATIO_SNACK = "INSULIN_RATIO_SNACK";
+    public static final String KEY_INSULIN_RATIO_SNACK = "INSULIN_RATIO_SNACK";
     /**
      * Default value
      */
-    private static final int DEFVALUE_INSULIN_RATIO_SNACK = 0;
+    private static final String DEFVALUE_INSULIN_RATIO_SNACK = "0";
     
     /**
      * key for preferences
      */
-    private static final String KEY_INSULIN_RATIO_DINNER = "INSULIN_RATIO_DINNER";
+    public static final String KEY_INSULIN_RATIO_DINNER = "INSULIN_RATIO_DINNER";
     /**
      * Default value
      */
-    private static final int DEFVALUE_INSULIN_RATIO_DINNER = 0;
+    private static final String DEFVALUE_INSULIN_RATIO_DINNER = "0";
     
     /**
      * key for preferences
      */
-    private static final String KEY_TIME_BREAKFAST_TO_LUNCH = "TIME_BREAKFAST_TO_LUNCH";
+    public static final String KEY_TIME_BREAKFAST_TO_LUNCH = "TIME_BREAKFAST_TO_LUNCH";
     /**
      * Default value
      */
@@ -80,7 +87,7 @@ public class Preferences {
     /**
      * key for preferences
      */
-    private static final String KEY_TIME_LUNCH_TO_SNACK = "TIME_LUNCH_TO_SNACK";
+    public static final String KEY_TIME_LUNCH_TO_SNACK = "TIME_LUNCH_TO_SNACK";
     /**
      * Default value
      */
@@ -89,7 +96,7 @@ public class Preferences {
     /**
      * key for preferences
      */
-    private static final String KEY_TIME_SNACK_TO_DINNER = "TIME_SNACK_TO_DINNER";
+    public static final String KEY_TIME_SNACK_TO_DINNER = "TIME_SNACK_TO_DINNER";
     /**
      * Default value
      */
@@ -106,85 +113,85 @@ public class Preferences {
     }
     
     static void setInsulineRatioBreakFast(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME,Context.MODE_PRIVATE)
+	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit() 
-	.putInt(KEY_INSULIN_RATIO_BREAKFAST, newvalue)
+	.putString(KEY_INSULIN_RATIO_BREAKFAST, Integer.toString(newvalue))
 	.commit();
-	
+	if (D) Log.i(TAG,"hello 1");
     }
     
-    int getInsulinRatioLunch(Context ctx) {
-	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
-	.getInt(KEY_INSULIN_RATIO_LUNCH, DEFVALUE_INSULIN_RATIO_LUNCH);
+    static int getInsulinRatioLunch(Context ctx) {
+	return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ctx)
+		.getString(KEY_INSULIN_RATIO_LUNCH, DEFVALUE_INSULIN_RATIO_LUNCH));
     }
     
     static void setInsulineRatioLunch(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
-	.edit()
-	.putInt(KEY_INSULIN_RATIO_LUNCH, DEFVALUE_INSULIN_RATIO_LUNCH)
+	PreferenceManager.getDefaultSharedPreferences(ctx)
+	.edit() 
+	.putString(KEY_INSULIN_RATIO_LUNCH, Integer.toString(newvalue))
 	.commit();
-	
+	if (D) Log.i(TAG,"hello 2");
     }
     
-    int getInsulinRatioSnack(Context ctx) {
-	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
-	.getInt(KEY_INSULIN_RATIO_SNACK,DEFVALUE_INSULIN_RATIO_SNACK);
+    static int getInsulinRatioSnack(Context ctx) {
+	return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ctx)
+		.getString(KEY_INSULIN_RATIO_SNACK, DEFVALUE_INSULIN_RATIO_SNACK));
     }
     
     static void setInsulineRatioSnack(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
-	.edit()
-	.putInt(KEY_INSULIN_RATIO_SNACK, DEFVALUE_INSULIN_RATIO_SNACK)
+	PreferenceManager.getDefaultSharedPreferences(ctx)
+	.edit() 
+	.putString(KEY_INSULIN_RATIO_SNACK, Integer.toString(newvalue))
 	.commit();
-	
+	if (D) Log.i(TAG,"hello 3");
     }
     
-    int getInsulinRatioDinner(Context ctx) {
-	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
-	.getInt(KEY_INSULIN_RATIO_DINNER, DEFVALUE_INSULIN_RATIO_DINNER);
+    static int getInsulinRatioDinner(Context ctx) {
+	return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ctx)
+		.getString(KEY_INSULIN_RATIO_DINNER, DEFVALUE_INSULIN_RATIO_DINNER));
     }
     
     static void setInsulineRatioDinner(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
-	.edit()
-	.putInt(KEY_INSULIN_RATIO_DINNER, DEFVALUE_INSULIN_RATIO_DINNER)
+	PreferenceManager.getDefaultSharedPreferences(ctx)
+	.edit() 
+	.putString(KEY_INSULIN_RATIO_DINNER, Integer.toString(newvalue))
 	.commit();
-	
+	if (D) Log.i(TAG,"hello 4");
     }
     
-    long getSwitchTimeBreakfastToLunch(Context ctx) {
+    static long getSwitchTimeBreakfastToLunch(Context ctx) {
 	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.getLong(KEY_TIME_BREAKFAST_TO_LUNCH, DEFVALUE_TIME_BREAKFAST_TO_LUNCH);
     }
     
     static void setSwitchTimeBreakfastToLunch(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
+	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit()
 	.putLong(KEY_TIME_BREAKFAST_TO_LUNCH, DEFVALUE_TIME_BREAKFAST_TO_LUNCH)
 	.commit();
 	
     }
     
-    long getSwitchTimeLunchToSnack(Context ctx) {
+    static long getSwitchTimeLunchToSnack(Context ctx) {
 	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.getLong(KEY_TIME_LUNCH_TO_SNACK, DEFVALUE_TIME_LUNCH_TO_SNACK);
     }
     
     static void setSwitchTimeLunchToSnack(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
+	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit()
 	.putLong(KEY_TIME_LUNCH_TO_SNACK, DEFVALUE_TIME_LUNCH_TO_SNACK)
 	.commit();
 	
     }
     
-    long getSwitchTimeSnackToDinner(Context ctx) {
+    static long getSwitchTimeSnackToDinner(Context ctx) {
 	return ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
 	.getLong(KEY_TIME_SNACK_TO_DINNER, DEFVALUE_TIME_SNACK_TO_DINNER);
     }
     
     static void setSwitchTimeSnackToDinner(Context ctx,int newvalue) {
-	ctx.getSharedPreferences(PREFERENCES_FILENAME, Context.MODE_PRIVATE)
+	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit()
 	.putLong(KEY_TIME_SNACK_TO_DINNER, DEFVALUE_TIME_SNACK_TO_DINNER)
 	.commit();
