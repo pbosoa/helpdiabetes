@@ -30,7 +30,7 @@
 					android:defaultValue="0"
 					android:persistent="true"
 					android:key="INSULIN_RATIO_BREAKFAST"
-					android:inputType="number">
+					android:inputType="numberDecimal">
 				</EditTextPreference>
 	            <EditTextPreference
 	                android:id="@+id/InsulinRatioLunchEditTextPreference"
@@ -39,7 +39,7 @@
 	                android:defaultValue="0"
 	                android:persistent="true"
 	                android:key="INSULIN_RATIO_LUNCH"
-	                android:inputType="number">
+	                android:inputType="numberDecimal">
 	            </EditTextPreference>
 	            <EditTextPreference
 	                android:id="@+id/InsulinRatioSnackEditTextPreference"
@@ -48,7 +48,7 @@
 	                android:defaultValue="0"
 	                android:persistent="true"
 	                android:key="INSULIN_RATIO_SNACK"
-	                android:inputType="number">
+	                android:inputType="numberDecimal">
 	            </EditTextPreference>
 	            <EditTextPreference
 	                android:id="@+id/InsulinRatioDinnerEditTextPreference"
@@ -57,7 +57,7 @@
 	                android:defaultValue="0"
 	                android:persistent="true"
 	                android:key="INSULIN_RATIO_DINNER"
-	                android:inputType="number">
+	                android:inputType="numberDecimal">
 	            </EditTextPreference>
 			</PreferenceCategory>
 		</PreferenceScreen>
@@ -65,10 +65,21 @@
             <PreferenceCategory android:title="@string/meal_times">
               <TimePickerPreference
                     android:id="@+id/BrekfastToLunchTimePickerPreference"
-                    android:title="@string/breakfastratio_title"
-                    android:summary="@string/breakfasttolunch_time"
+                    android:title="@string/breakfasttolunch_title"
                     android:persistent="true"
                     android:key="TIME_BREAKFAST_TO_LUNCH">
+              </TimePickerPreference>
+              <TimePickerPreference
+                    android:id="@+id/LunchToSnackTimePickerPreference"
+                    android:title="@string/lunchtosnack_title"
+                    android:persistent="true"
+                    android:key="TIME_LUNCH_TO_SNACK">
+              </TimePickerPreference>
+              <TimePickerPreference
+                    android:id="@+id/SnackToDinnerTimePickerPreference"
+                    android:title="@string/snacktodinner_title"
+                    android:persistent="true"
+                    android:key="TIME_SNACK_TO_DINNER">
               </TimePickerPreference>
             </PreferenceCategory>
         </PreferenceScreen>    

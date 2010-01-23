@@ -18,6 +18,9 @@
  *  additional information or have any questions.
  */
 package net.johandegraeve.helpdiabetes;
+import java.sql.Date;
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -43,7 +46,7 @@ public class ViewTotals extends Activity {
      * Textview to display the totals
      */
     TextView totals;
-    private int insulinRatio;
+    private double  insulinRatio;
     
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -62,6 +65,8 @@ public class ViewTotals extends Activity {
 	totals = (TextView) findViewById(R.id.overview);
 	String toDisplay; 
   	SelectedFoodItemDatabase db1 = new SelectedFoodItemDatabase(this);
+  	long timeValue;
+  	String meal;
 
   	//first calculate amount of carbs, fats, proteins and kilocalories
 	toDisplay = 
@@ -83,13 +88,33 @@ public class ViewTotals extends Activity {
 		" " +
 		getResources().getString(R.string.amount_of_kcal) +
 		"\n";
-	
+
+	//check which value should be used for meal and insulinratio
+	timeValue = System.currentTimeMillis();
+	timeValue = timeValue - (timeValue/(60*60*1000))*(60*60*1000);
+	if (timeValue < Preferences.getSwitchTimeBreakfastToLunch(this)) {
+	    insulinRatio = Preferences.getInsulinRatioBreakfast(this);
+	    meal = getResources().getString(R.string.breakfastratio_title);
+	}
+	else if (timeValue < Preferences.getSwitchTimeLunchToSnack(this)) {
+	    insulinRatio = Preferences.getInsulinRatioLunch(this);
+	    meal = getResources().getString(R.string.lunchratio_title);
+	}
+	else if (timeValue < Preferences.getSwitchTimeSnackToDinner(this)) {
+	    insulinRatio = Preferences.getInsulinRatioSnack(this);
+	    meal = getResources().getString(R.string.snackratio_title);
+	}
+	else {
+	    insulinRatio = Preferences.getInsulinRatioDinner(this);
+	    meal = getResources().getString(R.string.dinnerratio_title);
+	}
+
 	//now add the necessary amount of insulin if needed
-	//SharedPreferences prefs = getSharedPreferences("net.johandegraeve.helpdiabetes", MODE_PRIVATE);
-	//prefs.getInt("INSULIN_RATIO_BREAKFAST", Preferences.)
-	insulinRatio = Preferences.getInsulinRatioBreakfast(this);
 	if (insulinRatio > 0) {
+	    
 	    toDisplay = toDisplay +
+	    "\n" +
+	    meal +
 	    "\n" +
 	    getResources().getString(R.string.insulin) + 
 	    ": " +
@@ -101,13 +126,6 @@ public class ViewTotals extends Activity {
 	}
 	totals.setText(toDisplay);
 	
-	if (D) Log.e(TAG,"db1.getTotalCarbs()/insulinRatio = " + db1.getTotalCarbs()/insulinRatio);
-	if (D) Log.e(TAG,"db1.getTotalCarbs()/insulinRatio * 10 = " + db1.getTotalCarbs()/insulinRatio * 10);
-	if (D) Log.e(TAG,"Math.round(db1.getTotalCarbs()/insulinRatio * 10) = " + Math.round(db1.getTotalCarbs()/insulinRatio * 10));
-	if (D) Log.e(TAG,"((double)Math.round(db1.getTotalCarbs()/insulinRatio * 10))/10 = " + ((double)Math.round(db1.getTotalCarbs()/insulinRatio * 10))/10 );
-
-	
-
     }
 
 }

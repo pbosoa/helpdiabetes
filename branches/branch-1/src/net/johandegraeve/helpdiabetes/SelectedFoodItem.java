@@ -37,7 +37,7 @@ public class SelectedFoodItem {
     /**
      * tag to be used by any method in this calss, when using {@link android.util.Log}
      */
-    private static final String LOG_TAG = "HD-SelectedFoodItem";
+    private static final String TAG = "SelectedFoodItem";
     
     /**
      * a fooditem
@@ -70,7 +70,6 @@ public class SelectedFoodItem {
      * the first unit has number 0
      */
     public SelectedFoodItem(FoodItem newFoodItem, double chosenAmount, int chosenUnitNumber) {
-	Log.i(LOG_TAG, "Creating SelectedFoodItem " + newFoodItem.getItemDescription());
 	this.foodItem = new FoodItem(newFoodItem);
 	this.chosenAmount = chosenAmount;
 	this.chosenUnitNumber = chosenUnitNumber;
@@ -87,7 +86,6 @@ public class SelectedFoodItem {
      * the first unit has number 0
      */
     public SelectedFoodItem(FoodItem newFoodItem, double chosenAmount, int chosenUnitNumber, long id) {
-	Log.i(LOG_TAG, "Creating SelectedFoodItem " + newFoodItem.getItemDescription());
 	this.foodItem = new FoodItem(newFoodItem);
 	this.chosenAmount = chosenAmount;
 	this.chosenUnitNumber = chosenUnitNumber;

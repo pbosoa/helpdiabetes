@@ -104,63 +104,58 @@ public class Preferences {
      */
     public static final String DEFVALUE_TIME_SNACK_TO_DINNER = "17:00";
     
-    public static int getInsulinRatioBreakfast(Context ctx) {
-	return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ctx)
+    public static double getInsulinRatioBreakfast(Context ctx) {
+	return Double.parseDouble(PreferenceManager.getDefaultSharedPreferences(ctx)
 	.getString(KEY_INSULIN_RATIO_BREAKFAST, DEFVALUE_INSULIN_RATIO_BREAKFAST));
     }
     
-    public static void setInsulineRatioBreakFast(Context ctx,int newvalue) {
+    public static void setInsulineRatioBreakFast(Context ctx,double newvalue) {
 	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit() 
-	.putString(KEY_INSULIN_RATIO_BREAKFAST, Integer.toString(newvalue))
+	.putString(KEY_INSULIN_RATIO_BREAKFAST, Double.toString(newvalue))
 	.commit();
-	if (D) Log.i(TAG,"hello 1");
     }
     
-    public static int getInsulinRatioLunch(Context ctx) {
-	return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ctx)
+    public static double getInsulinRatioLunch(Context ctx) {
+	return Double.parseDouble(PreferenceManager.getDefaultSharedPreferences(ctx)
 		.getString(KEY_INSULIN_RATIO_LUNCH, DEFVALUE_INSULIN_RATIO_LUNCH));
     }
     
-    public static void setInsulineRatioLunch(Context ctx,int newvalue) {
+    public static void setInsulineRatioLunch(Context ctx,double newvalue) {
 	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit() 
-	.putString(KEY_INSULIN_RATIO_LUNCH, Integer.toString(newvalue))
+	.putString(KEY_INSULIN_RATIO_LUNCH, Double.toString(newvalue))
 	.commit();
-	if (D) Log.i(TAG,"hello 2");
     }
     
-    public static int getInsulinRatioSnack(Context ctx) {
-	return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ctx)
+    public static double getInsulinRatioSnack(Context ctx) {
+	return Double.parseDouble(PreferenceManager.getDefaultSharedPreferences(ctx)
 		.getString(KEY_INSULIN_RATIO_SNACK, DEFVALUE_INSULIN_RATIO_SNACK));
     }
     
-    public static void setInsulineRatioSnack(Context ctx,int newvalue) {
+    public static void setInsulineRatioSnack(Context ctx,double newvalue) {
 	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit() 
-	.putString(KEY_INSULIN_RATIO_SNACK, Integer.toString(newvalue))
+	.putString(KEY_INSULIN_RATIO_SNACK, Double.toString(newvalue))
 	.commit();
-	if (D) Log.i(TAG,"hello 3");
     }
     
-    public static int getInsulinRatioDinner(Context ctx) {
-	return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ctx)
+    public static double getInsulinRatioDinner(Context ctx) {
+	return Double.parseDouble(PreferenceManager.getDefaultSharedPreferences(ctx)
 		.getString(KEY_INSULIN_RATIO_DINNER, DEFVALUE_INSULIN_RATIO_DINNER));
     }
     
-    public static void setInsulineRatioDinner(Context ctx,int newvalue) {
+    public static void setInsulineRatioDinner(Context ctx,double newvalue) {
 	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit() 
-	.putString(KEY_INSULIN_RATIO_DINNER, Integer.toString(newvalue))
+	.putString(KEY_INSULIN_RATIO_DINNER, Double.toString(newvalue))
 	.commit();
-	if (D) Log.i(TAG,"hello 4");
     }
     
     static long getSwitchTimeBreakfastToLunch(Context ctx) {
 	String time = PreferenceManager.getDefaultSharedPreferences(ctx)
 	.getString(KEY_TIME_BREAKFAST_TO_LUNCH, DEFVALUE_TIME_BREAKFAST_TO_LUNCH);
-	if(D) Log.e(TAG, "breakfast = " + (Integer.parseInt(time.split(":")[0])*60 + Integer.parseInt(time.split(":")[1]))*60*1000);
-	return (Integer.parseInt(time.split(":")[0])*60 + Integer.parseInt(time.split(":")[1]))*60*1000;
+	return stringToLong(time);
     }
     
     public static void setSwitchTimeBreakfastToLunch(Context ctx,String newvalue) {
@@ -173,8 +168,7 @@ public class Preferences {
     public static long getSwitchTimeLunchToSnack(Context ctx) {
 	String time = PreferenceManager.getDefaultSharedPreferences(ctx)
 	.getString(KEY_TIME_LUNCH_TO_SNACK, DEFVALUE_TIME_LUNCH_TO_SNACK);
-	
-	return (Integer.parseInt(time.split(":")[0])*60 + Integer.parseInt(time.split(":")[1]))*60*1000;
+	return stringToLong(time);
     }
     
     public static void setSwitchTimeLunchToSnack(Context ctx,String newvalue) {
@@ -186,7 +180,7 @@ public class Preferences {
     public static long getSwitchTimeSnackToDinner(Context ctx) {
 	String time = PreferenceManager.getDefaultSharedPreferences(ctx)
 	.getString(KEY_TIME_SNACK_TO_DINNER, DEFVALUE_TIME_SNACK_TO_DINNER);
-	return (Integer.parseInt(time.split(":")[0])*60 + Integer.parseInt(time.split(":")[1]))*60*1000;
+	return stringToLong(time);
     }
     
     public static void setSwitchTimeSnackToDinner(Context ctx,String newvalue) {
@@ -195,4 +189,7 @@ public class Preferences {
 	.putString(KEY_TIME_SNACK_TO_DINNER, newvalue);
     }
     
- }
+    static private long stringToLong(String time) {
+	return (Integer.parseInt(time.split(":")[0])*60 + Integer.parseInt(time.split(":")[1]))*60*1000;
+    }
+}

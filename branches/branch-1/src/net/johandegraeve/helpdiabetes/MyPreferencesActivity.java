@@ -59,16 +59,23 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
     String originalSummaryInsulinRatioDinnerEditTextPreference;
     
     TimePickerPreference BreakFastToLunchTimePickerPref;
-    /**
-     * set to true after activity is build for the first time, as soon as any of the ratios is changed, set to false
-     * If user choses not to change all ratios, then set back to true.
-     */
-    private boolean firstCall = false;
-    
+    String originalSummaryBreakFastToLunchTimePickerPref;
+    TimePickerPreference LunchToSnackTimePickerPref;
+    String originalSummaryLunchToSnackTimePickerPref;
+    TimePickerPreference SnackToDinnerTimePickerPref;
+    String originalSummarySnackToDinnerTimePickerPref;
+
     /**
      * this Context
      */
     Context thisContext;
+    
+    
+    /**
+     * used to verify if preferences are set for first time, used to decide if app will ask whether all 
+     * ratios should get the new value 
+     */
+    private boolean firstCall;
     
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -103,11 +110,22 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
 	insulinRatioDinnerEditTextPreference = (EditTextPreference) findPreference(Preferences.KEY_INSULIN_RATIO_DINNER);
 	originalSummaryInsulinRatioDinnerEditTextPreference = (String) insulinRatioBreakFastEditTextPreference.getSummary();
 	
+	//initialize also timepicker preferences for switch times
+	//setDefaultValue call is necessary because the it's not automatically called by Android - seems a bug somewhere
 	BreakFastToLunchTimePickerPref = (TimePickerPreference) findPreference(Preferences.KEY_TIME_BREAKFAST_TO_LUNCH);
-
         BreakFastToLunchTimePickerPref.setDefaultValue(Preferences.DEFVALUE_TIME_BREAKFAST_TO_LUNCH);
+        //originalSummary not used, I kept it just in case I want to add a xml resource based summary in the future
+        originalSummaryBreakFastToLunchTimePickerPref = "";
 	
-	
+        LunchToSnackTimePickerPref = (TimePickerPreference) findPreference(Preferences.KEY_TIME_LUNCH_TO_SNACK);
+        LunchToSnackTimePickerPref.setDefaultValue(Preferences.DEFVALUE_TIME_LUNCH_TO_SNACK);
+        //originalSummary not used, I kept it just in case I want to add a xml resource based summary in the future
+        originalSummaryLunchToSnackTimePickerPref = "";
+        
+        SnackToDinnerTimePickerPref = (TimePickerPreference) findPreference(Preferences.KEY_TIME_SNACK_TO_DINNER);
+        SnackToDinnerTimePickerPref.setDefaultValue(Preferences.DEFVALUE_TIME_SNACK_TO_DINNER);
+        //originalSummary not used, I kept it just in case I want to add a xml resource based summary in the future
+        originalSummarySnackToDinnerTimePickerPref = "";
 }
 
     /** Overriding necessary to be notified about preference changes, so that summaries can immediately be changed,
@@ -119,20 +137,32 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
 	if (key.equals(Preferences.KEY_INSULIN_RATIO_BREAKFAST)) {
 	    resetInsulineRatioSummary(insulinRatioBreakFastEditTextPreference, 
 		    originalSummaryInsulinRatioBreakFastEditTextPreference,
-		    Integer.toString(Preferences.getInsulinRatioBreakfast(this)));
+		    Double.toString(Preferences.getInsulinRatioBreakfast(this)));
 	} else if (key.equals(Preferences.KEY_INSULIN_RATIO_LUNCH)) {
 	    resetInsulineRatioSummary(insulinRatioLunchEditTextPreference, 
 		    originalSummaryInsulinRatioLunchEditTextPreference,
-		    Integer.toString(Preferences.getInsulinRatioLunch(this)));
+		    Double.toString(Preferences.getInsulinRatioLunch(this)));
 	} else if (key.equals(Preferences.KEY_INSULIN_RATIO_SNACK)) {
 	    resetInsulineRatioSummary(insulinRatioSnackEditTextPreference, 
 		    originalSummaryInsulinRatioSnackEditTextPreference,
-		    Integer.toString(Preferences.getInsulinRatioSnack(this)));
+		    Double.toString(Preferences.getInsulinRatioSnack(this)));
 	} else if (key.equals(Preferences.KEY_INSULIN_RATIO_DINNER)) {
 	    resetInsulineRatioSummary(insulinRatioDinnerEditTextPreference, 
 		    originalSummaryInsulinRatioDinnerEditTextPreference,
-		    Integer.toString(Preferences.getInsulinRatioDinner(this)));
-	} 
+		    Double.toString(Preferences.getInsulinRatioDinner(this)));
+	} else if (key.equalsIgnoreCase(Preferences.KEY_TIME_BREAKFAST_TO_LUNCH)) {
+	    resetSwitchTimeSummary(BreakFastToLunchTimePickerPref, 
+		    originalSummaryBreakFastToLunchTimePickerPref, 
+		    Preferences.getSwitchTimeBreakfastToLunch(this));
+	} else if (key.equalsIgnoreCase(Preferences.KEY_TIME_LUNCH_TO_SNACK)) {
+	    resetSwitchTimeSummary(LunchToSnackTimePickerPref, 
+		    originalSummaryLunchToSnackTimePickerPref, 
+		    Preferences.getSwitchTimeLunchToSnack(this));
+	} else if (key.equalsIgnoreCase(Preferences.KEY_TIME_SNACK_TO_DINNER)) {
+	    resetSwitchTimeSummary(SnackToDinnerTimePickerPref, 
+		    originalSummarySnackToDinnerTimePickerPref, 
+		    Preferences.getSwitchTimeSnackToDinner(this));
+	}
 
 	
 	
@@ -154,19 +184,35 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
         //now reset all the summaries
         resetInsulineRatioSummary(insulinRatioBreakFastEditTextPreference, 
 	    originalSummaryInsulinRatioBreakFastEditTextPreference,
-	    Integer.toString(Preferences.getInsulinRatioBreakfast(this)));
+	    Double.toString(Preferences.getInsulinRatioBreakfast(this)));
         
         resetInsulineRatioSummary(insulinRatioLunchEditTextPreference, 
     	    originalSummaryInsulinRatioLunchEditTextPreference,
-    	    Integer.toString(Preferences.getInsulinRatioLunch(this)));
+    	Double.toString(Preferences.getInsulinRatioLunch(this)));
         
         resetInsulineRatioSummary(insulinRatioSnackEditTextPreference, 
     	    originalSummaryInsulinRatioSnackEditTextPreference,
-    	    Integer.toString(Preferences.getInsulinRatioSnack(this)));
+    	    Double.toString(Preferences.getInsulinRatioSnack(this)));
         
         resetInsulineRatioSummary(insulinRatioDinnerEditTextPreference, 
     	    originalSummaryInsulinRatioDinnerEditTextPreference,
-    	    Integer.toString(Preferences.getInsulinRatioDinner(this)));
+    	    Double.toString(Preferences.getInsulinRatioDinner(this)));
+
+        if (D) Log.e(TAG,"calling resetSwitchTimeSummary for BreakFastToLunchTimePickerPref");
+        resetSwitchTimeSummary(BreakFastToLunchTimePickerPref, 
+        	originalSummaryBreakFastToLunchTimePickerPref, 
+        	Preferences.getSwitchTimeBreakfastToLunch(this));
+        if (D) Log.e(TAG,"calling resetSwitchTimeSummary for LunchToSnackhTimePickerPref");
+
+        resetSwitchTimeSummary(LunchToSnackTimePickerPref, 
+        	originalSummaryLunchToSnackTimePickerPref, 
+        	Preferences.getSwitchTimeLunchToSnack(this));
+        
+        if (D) Log.e(TAG,"calling resetSwitchTimeSummary for SnacktoDinnerTimePickerPref");
+
+        resetSwitchTimeSummary(SnackToDinnerTimePickerPref, 
+        	originalSummarySnackToDinnerTimePickerPref, 
+        	Preferences.getSwitchTimeSnackToDinner(this));
 
         firstCall = true;
     }
@@ -189,17 +235,18 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
      * Sets the summmary of the preference. Goal is that the summary is built of the summary from preferences.xml
      * + a text containing the actual value of the preference.
      * It check also the value firstCall and if firstCall dialog pops up to ask of all ratios should get the new value.
-     * @param preference The Preference of which the summary needs to be changed
+     * @param preference The EditTextPreference of which the summary needs to be changed
      * @param originalSummary the originalsummary as was stored in preferences.xml
      * @param theSetting the value of the preference
      */
-    private void resetInsulineRatioSummary(Preference preference, 
+    private void resetInsulineRatioSummary(EditTextPreference preference, 
 	    String originalSummary,
 	    final String theSetting) {
 
 	preference.setSummary(originalSummary  +
 		    " " + theSetting);
 	
+	//if firstcall then ask user if all ratios should get this new value
 	if (firstCall) {
 	    new AlertDialog.Builder(this)
 	    .setMessage(R.string.change_all_ratios)
@@ -207,19 +254,19 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
 		public void onClick(DialogInterface dialog, int whichButton)
 		{
 		    firstCall = false;
-		    Preferences.setInsulineRatioBreakFast(thisContext, Integer.parseInt(theSetting));
+		    Preferences.setInsulineRatioBreakFast(thisContext, Double.parseDouble(theSetting));
 		    resetInsulineRatioSummary(insulinRatioBreakFastEditTextPreference, 
 			    originalSummaryInsulinRatioBreakFastEditTextPreference, 
 			    theSetting);
-		    Preferences.setInsulineRatioLunch(thisContext, Integer.parseInt(theSetting));
+		    Preferences.setInsulineRatioLunch(thisContext, Double.parseDouble(theSetting));
 		    resetInsulineRatioSummary(insulinRatioLunchEditTextPreference, 
 			    originalSummaryInsulinRatioLunchEditTextPreference, 
 			    theSetting);
-		    Preferences.setInsulineRatioSnack(thisContext, Integer.parseInt(theSetting));
+		    Preferences.setInsulineRatioSnack(thisContext, Double.parseDouble(theSetting));
 		    resetInsulineRatioSummary(insulinRatioSnackEditTextPreference, 
 			    originalSummaryInsulinRatioSnackEditTextPreference, 
 			    theSetting);
-		    Preferences.setInsulineRatioDinner(thisContext, Integer.parseInt(theSetting));
+		    Preferences.setInsulineRatioDinner(thisContext, Double.parseDouble(theSetting));
 		    resetInsulineRatioSummary(insulinRatioDinnerEditTextPreference, 
 			    originalSummaryInsulinRatioDinnerEditTextPreference, 
 			    theSetting);
@@ -235,5 +282,27 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
 	    .show();
 	}
     }
+    
+    private void resetSwitchTimeSummary(TimePickerPreference preference, 
+	    String originalSummary,
+	    final long theSetting) {
+
+	long hourLong = theSetting/(60*60*1000);
+
+	String hour = Long.toString(hourLong);
+	if (hour.length() < 2) {
+	    hour = "0" + hour;
+	}
+	
+	String minute = Long.toString((theSetting - hourLong * (60*60*1000))/(60*1000));
+	if (minute.length() < 2) {
+	    minute = "0" + minute;
+	}
+	
+	preference.setSummary(originalSummary  +
+		    " " + hour + ":" + minute);
+	
+    }
+
 
 }
