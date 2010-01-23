@@ -2,6 +2,7 @@ package android.preference;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.TimePicker;
  
@@ -17,6 +18,13 @@ import android.widget.TimePicker;
 public class TimePickerPreference extends DialogPreference implements
 		TimePicker.OnTimeChangedListener {
  
+        private static final String TAG = "TimePickerPreference";
+        /**
+         * set to true for debugging
+         */
+        private static final boolean D = true;
+        
+
 	/**
 	 * The validation expression for this preference
 	 */
@@ -71,7 +79,7 @@ public class TimePickerPreference extends DialogPreference implements
 			tp.setCurrentHour(h);
 			tp.setCurrentMinute(m);
 		}
-		tp.setIs24HourView(true)
+		tp.setIs24HourView(true);
  
 		return tp;
 	}
@@ -86,7 +94,9 @@ public class TimePickerPreference extends DialogPreference implements
 	
 	public void onTimeChanged(TimePicker view, int hour, int minute) {
  
-		persistString(hour + ":" + minute);
+	    String result = hour + ":" + minute;
+	    persistString(result);
+	    callChangeListener(result);
 	}
  
 	/*
@@ -97,7 +107,7 @@ public class TimePickerPreference extends DialogPreference implements
 	@Override
 	public void setDefaultValue(Object defaultValue) {
 		// BUG this method is never called if you use the 'android:defaultValue' attribute in your XML preference file, not sure why it isn't		
- 
+ if(D) Log.e(TAG,"calling setDefaultValue");
 		super.setDefaultValue(defaultValue);
  
 		if (!(defaultValue instanceof String)) {

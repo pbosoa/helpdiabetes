@@ -79,7 +79,10 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
         if(D) Log.e(TAG, "++ ON CREATE ++");
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences);
+        
+        
         thisContext = this;
+        
         setup();
     }
     
@@ -101,6 +104,9 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
 	originalSummaryInsulinRatioDinnerEditTextPreference = (String) insulinRatioBreakFastEditTextPreference.getSummary();
 	
 	BreakFastToLunchTimePickerPref = (TimePickerPreference) findPreference(Preferences.KEY_TIME_BREAKFAST_TO_LUNCH);
+
+        BreakFastToLunchTimePickerPref.setDefaultValue(Preferences.DEFVALUE_TIME_BREAKFAST_TO_LUNCH);
+	
 	
 }
 
