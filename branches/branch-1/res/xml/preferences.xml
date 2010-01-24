@@ -84,6 +84,6 @@
             </PreferenceCategory>
         </PreferenceScreen>    
     </PreferenceCategory>
-	<PreferenceCategory android:title="@string/preferences_layout_title">
-    </PreferenceCategory>
+	<!-- not used for the moment PreferenceCategory android:title="@string/preferences_layout_title" -->
+    <!--  /PreferenceCategory -->
 </PreferenceScreen>

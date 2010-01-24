@@ -79,6 +79,7 @@
     <string name="change_all_ratios">Assign the new value to all carb ratios ?</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
+    <string name="notused">(not used)</string>
     
     <!--  new menu item in activity helpdiabetes -->
     <string name="title_settings">Settings</string>
@@ -91,7 +92,7 @@
     <string name="preferences_activity_name">Settings</string>
     <!--  first category is the category for insulineratios (amounts of insulin/grams of carbs, timing breakfast to dinner etc. -->
     	<!-- the title that comes as title of a category -->
-		<string name="preferences_insulinratios_title">Carb to Insulin Ratios</string>
+		<string name="preferences_insulinratios_title">Bolus calculation</string>
 	    	<!-- the title of a screen, also shown in the main preferences page -->
 	    	<!--  first the ratios -->
 			<string name="preferences_insulinratios">Ratios</string>

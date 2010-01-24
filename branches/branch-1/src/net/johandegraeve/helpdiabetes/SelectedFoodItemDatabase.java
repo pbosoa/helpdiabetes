@@ -345,7 +345,8 @@ public class SelectedFoodItemDatabase {
     }
 
     /**
-     * gets total amount of fats for the selected FoodItems
+     * Gets total amount of fats for the selected FoodItems. If any of the selected items has no fatvalue (ie -1) then the
+     * return value will be -1.
      * @return total amount of fats for the selected FoodItems
      */
     public double getTotalFats() {
@@ -356,6 +357,8 @@ public class SelectedFoodItemDatabase {
 	} else {
 	    double returnvalue = 0;
 	    for (int i = 0;i < list.length; i++ ) {
+		if (list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getFat() < 0) 
+		    return -1;
 		returnvalue = returnvalue +
 			list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getFat() *
 			list[i].getChosenAmount() /  
@@ -366,7 +369,8 @@ public class SelectedFoodItemDatabase {
     }
 
     /**
-     * gets total amount of kilocalories for the selected FoodItems
+     * gets total amount of kilocalories for the selected FoodItems. If any of the selected items has no fatvalue (ie -1) then the
+     * return value will be -1.
      * @return total amount of kilocalories for the selected FoodItems
      */
     public double getTotalKcal() {
@@ -377,6 +381,8 @@ public class SelectedFoodItemDatabase {
 	} else {
 	    double returnvalue = 0;
 	    for (int i = 0;i < list.length; i++ ) {
+		if (list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getFat() < 0) 
+		    return -1;
 		returnvalue = returnvalue +
 			list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getKcal() *
 			list[i].getChosenAmount() /  
@@ -387,7 +393,8 @@ public class SelectedFoodItemDatabase {
     }
     
     /**
-     * gets total amount of proteins for the selected FoodItems
+     * gets total amount of proteins for the selected FoodItems. If any of the selected items has no fatvalue (ie -1) then the
+     * return value will be -1.
      * @return total amount of proteins for the selected FoodItems
      */
     public double getTotalProteins() {
@@ -398,6 +405,8 @@ public class SelectedFoodItemDatabase {
 	} else {
 	    double returnvalue = 0;
 	    for (int i = 0;i < list.length; i++ ) {
+		if (list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getFat() < 0) 
+		    return -1;
 		returnvalue = returnvalue +
 			list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getProtein() *
 			list[i].getChosenAmount() /  

@@ -70,6 +70,9 @@ public class ViewTotals extends Activity {
   	SelectedFoodItemDatabase db1 = new SelectedFoodItemDatabase(this);
   	long currentTime;
   	String meal;
+  	long totalKcal = Math.round(db1.getTotalKcal());
+  	long totalFats= Math.round(db1.getTotalFats());
+  	long totalProteins= Math.round(db1.getTotalProteins());
 
   	//first calculate amount of carbs, fats, proteins and kilocalories
 	toDisplay = 
@@ -79,18 +82,24 @@ public class ViewTotals extends Activity {
 		" " +
 		getResources().getString(R.string.amount_of_carbs) +
 		"\n" +
-		Math.round(db1.getTotalFats()) +
+		
+		//add fats 
+		(totalFats == -1 ? "": Math.round(db1.getTotalFats()) +
 		" " +
 		getResources().getString(R.string.amount_of_fats) +
-		"\n" +
-		Math.round(db1.getTotalProteins()) +
+		"\n") +
+		
+		//add proteins
+		(totalProteins == -1 ? "": Math.round(db1.getTotalProteins()) +
 		" " +
 		getResources().getString(R.string.amount_of_proteins) +
-		"\n" +
-		Math.round(db1.getTotalKcal()) +
+		"\n") +
+		
+		//add kilocalories
+		(totalKcal == -1 ? "": Math.round(db1.getTotalKcal()) +
 		" " +
 		getResources().getString(R.string.amount_of_kcal) +
-		"\n";
+		"\n");
 
 	//check which value should be used for meal and insulinratio
 	insulinRatio = 0;

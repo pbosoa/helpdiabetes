@@ -226,7 +226,7 @@ public class AddSelectFoodItem extends Activity{
 		" " +
 		getResources().getString(R.string.contains) +
 		" " +
-		selectedFoodItem.getFoodItem().getUnit(selectedFoodItem.getChosenUnitNumber()).getCarbs() +
+		((double)Math.round(selectedFoodItem.getFoodItem().getUnit(selectedFoodItem.getChosenUnitNumber()).getCarbs() * 10))/10 +
 		" " +
 		getResources().getString(R.string.amount_of_carbs) + 
 		"."

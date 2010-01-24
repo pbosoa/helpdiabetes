@@ -34,6 +34,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 /**
+ * Place class description here
+ *
+ * @version 1.0
+ * @author Johan Degraeve
+ *
+ */
+/**
+ * Place class description here
+ *
+ * @version 1.0
+ * @author Johan Degraeve
+ *
+ */
+/**
  * PreferenceActivity class, as defined by Android. 
  * Implements also OnSharedPreferenceChangeListener in order to change preference summaries as soon as any preference
  * changed.
@@ -233,7 +247,8 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
 
     /**
      * Sets the summmary of the preference. Goal is that the summary is built of the summary from preferences.xml
-     * + a text containing the actual value of the preference.
+     * + a text containing the actual value of the preference.<br>
+     * In case theSetting =="0.0" then it will be replaced by a value indicating "not used".<br>
      * It check also the value firstCall and if firstCall dialog pops up to ask of all ratios should get the new value.
      * @param preference The EditTextPreference of which the summary needs to be changed
      * @param originalSummary the originalsummary as was stored in preferences.xml
@@ -241,10 +256,19 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
      */
     private void resetInsulineRatioSummary(EditTextPreference preference, 
 	    String originalSummary,
-	    final String theSetting) {
-
+	    String theSetting) {
+	
+	//check if theSetting happens to be 0.0, means not used.
+	//in that case actually setting value will be replaced by a text indicating 'not used'
+	String tempSetting;
+	if (theSetting.equalsIgnoreCase("0.0") ) {
+	    tempSetting = getResources().getString(R.string.notused);
+	} else tempSetting = theSetting;
+	final String  newSetting = tempSetting;
+	
+	//change the summary
 	preference.setSummary(originalSummary  +
-		    " " + theSetting);
+		    " " + newSetting);
 	
 	//if firstcall then ask user if all ratios should get this new value
 	if (firstCall) {
@@ -254,22 +278,22 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
 		public void onClick(DialogInterface dialog, int whichButton)
 		{
 		    firstCall = false;
-		    Preferences.setInsulineRatioBreakFast(thisContext, Double.parseDouble(theSetting));
+		    Preferences.setInsulineRatioBreakFast(thisContext, Double.parseDouble(newSetting));
 		    resetInsulineRatioSummary(insulinRatioBreakFastEditTextPreference, 
 			    originalSummaryInsulinRatioBreakFastEditTextPreference, 
-			    theSetting);
-		    Preferences.setInsulineRatioLunch(thisContext, Double.parseDouble(theSetting));
+			    newSetting);
+		    Preferences.setInsulineRatioLunch(thisContext, Double.parseDouble(newSetting));
 		    resetInsulineRatioSummary(insulinRatioLunchEditTextPreference, 
 			    originalSummaryInsulinRatioLunchEditTextPreference, 
-			    theSetting);
-		    Preferences.setInsulineRatioSnack(thisContext, Double.parseDouble(theSetting));
+			    newSetting);
+		    Preferences.setInsulineRatioSnack(thisContext, Double.parseDouble(newSetting));
 		    resetInsulineRatioSummary(insulinRatioSnackEditTextPreference, 
 			    originalSummaryInsulinRatioSnackEditTextPreference, 
-			    theSetting);
-		    Preferences.setInsulineRatioDinner(thisContext, Double.parseDouble(theSetting));
+			    newSetting);
+		    Preferences.setInsulineRatioDinner(thisContext, Double.parseDouble(newSetting));
 		    resetInsulineRatioSummary(insulinRatioDinnerEditTextPreference, 
 			    originalSummaryInsulinRatioDinnerEditTextPreference, 
-			    theSetting);
+			    newSetting);
 		}
 	    })
 	    .setNegativeButton(R.string.no,new DialogInterface.OnClickListener() {
@@ -283,6 +307,14 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
 	}
     }
     
+    /**
+     * Sets the summmary of the preference. Goal is that the summary is built of the originalSummary (which is normally taken from
+     * preferences.xml)
+     * + a text containing the actual value of the preference.
+     * @param preference 
+     * @param originalSummary
+     * @param theSetting
+     */
     private void resetSwitchTimeSummary(TimePickerPreference preference, 
 	    String originalSummary,
 	    final long theSetting) {
