@@ -20,10 +20,12 @@
 package net.johandegraeve.helpdiabetes;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -40,13 +42,14 @@ public class ViewTotals extends Activity {
     /**
      * set to true for debugging
      */
-    private static final boolean D = false;
+    private static final boolean D = true;;
     
     /**
      * Textview to display the totals
      */
     TextView totals;
     private double  insulinRatio;
+    private Calendar cal;
     
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -65,7 +68,7 @@ public class ViewTotals extends Activity {
 	totals = (TextView) findViewById(R.id.overview);
 	String toDisplay; 
   	SelectedFoodItemDatabase db1 = new SelectedFoodItemDatabase(this);
-  	long timeValue;
+  	long currentTime;
   	String meal;
 
   	//first calculate amount of carbs, fats, proteins and kilocalories
@@ -90,17 +93,25 @@ public class ViewTotals extends Activity {
 		"\n";
 
 	//check which value should be used for meal and insulinratio
-	timeValue = System.currentTimeMillis();
-	timeValue = timeValue - (timeValue/(60*60*1000))*(60*60*1000);
-	if (timeValue < Preferences.getSwitchTimeBreakfastToLunch(this)) {
+	insulinRatio = 0;
+
+	//get the currentTime in milliseconds, local time
+        cal = Calendar.getInstance();
+        cal.set(Calendar.MONTH, Calendar.JANUARY);
+        cal.set( Calendar.DAY_OF_MONTH, 1 );
+        cal.set( Calendar.YEAR, 1970 );
+        cal.setTimeZone(TimeZone.getDefault());
+        currentTime = Preferences.timeAsStringToLong(cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE));
+        
+	if (currentTime < Preferences.getSwitchTimeBreakfastToLunch(this)) {
 	    insulinRatio = Preferences.getInsulinRatioBreakfast(this);
 	    meal = getResources().getString(R.string.breakfastratio_title);
 	}
-	else if (timeValue < Preferences.getSwitchTimeLunchToSnack(this)) {
+	else if (currentTime < Preferences.getSwitchTimeLunchToSnack(this)) {
 	    insulinRatio = Preferences.getInsulinRatioLunch(this);
 	    meal = getResources().getString(R.string.lunchratio_title);
 	}
-	else if (timeValue < Preferences.getSwitchTimeSnackToDinner(this)) {
+	else if (currentTime < Preferences.getSwitchTimeSnackToDinner(this)) {
 	    insulinRatio = Preferences.getInsulinRatioSnack(this);
 	    meal = getResources().getString(R.string.snackratio_title);
 	}

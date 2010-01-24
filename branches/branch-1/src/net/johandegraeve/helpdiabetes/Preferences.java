@@ -155,7 +155,7 @@ public class Preferences {
     static long getSwitchTimeBreakfastToLunch(Context ctx) {
 	String time = PreferenceManager.getDefaultSharedPreferences(ctx)
 	.getString(KEY_TIME_BREAKFAST_TO_LUNCH, DEFVALUE_TIME_BREAKFAST_TO_LUNCH);
-	return stringToLong(time);
+	return timeAsStringToLong(time);
     }
     
     public static void setSwitchTimeBreakfastToLunch(Context ctx,String newvalue) {
@@ -168,7 +168,7 @@ public class Preferences {
     public static long getSwitchTimeLunchToSnack(Context ctx) {
 	String time = PreferenceManager.getDefaultSharedPreferences(ctx)
 	.getString(KEY_TIME_LUNCH_TO_SNACK, DEFVALUE_TIME_LUNCH_TO_SNACK);
-	return stringToLong(time);
+	return timeAsStringToLong(time);
     }
     
     public static void setSwitchTimeLunchToSnack(Context ctx,String newvalue) {
@@ -180,7 +180,7 @@ public class Preferences {
     public static long getSwitchTimeSnackToDinner(Context ctx) {
 	String time = PreferenceManager.getDefaultSharedPreferences(ctx)
 	.getString(KEY_TIME_SNACK_TO_DINNER, DEFVALUE_TIME_SNACK_TO_DINNER);
-	return stringToLong(time);
+	return timeAsStringToLong(time);
     }
     
     public static void setSwitchTimeSnackToDinner(Context ctx,String newvalue) {
@@ -189,7 +189,12 @@ public class Preferences {
 	.putString(KEY_TIME_SNACK_TO_DINNER, newvalue);
     }
     
-    static private long stringToLong(String time) {
+    /**
+     * helper method also used in other classes
+     * @param time in a string in the format HH:mm example 10:35 or 10:9, an hour or time of 1 digit is also allowed
+     * @return the tima in milliseconds
+     */
+    static public long timeAsStringToLong(String time) {
 	return (Integer.parseInt(time.split(":")[0])*60 + Integer.parseInt(time.split(":")[1]))*60*1000;
     }
 }
