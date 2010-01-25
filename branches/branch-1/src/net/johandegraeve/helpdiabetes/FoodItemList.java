@@ -124,13 +124,6 @@ public class FoodItemList extends ArrayAdapter<String> {
     private String warningMessage;
     
     /**
-     * This Bundle will hold the fooditemlist, anytime the fooditemlist changes, the Bundle needs to be recreated.<br>
-     * It is to be used by the creator, which is in this application the activity HelpDiabetes, which will need the bundle
-     * to handle onPause
-     */
-    private Bundle bundledFoodItemList;
-
-    /**
      * Creates FoodItemList with an empty fooditemlist.<br>
      * @param context the calling Context
      * @param textViewResourceId the resourceid, necessary to call the super class
@@ -411,7 +404,6 @@ public class FoodItemList extends ArrayAdapter<String> {
 	final FoodItemList thislist = this;
 	//bundleFoodItemList is intialized to savedBunbdle. If savedBundle = null then it will not be used
 	//if not null then this bundle will be used to initialize the fooditemlist in stead of the foodfile on disk.
-	bundledFoodItemList = savedBundle;
 	backgroundThread = new Thread(new Runnable() {
 	    public void run() {
 		thislist.initialize();
@@ -437,15 +429,6 @@ public class FoodItemList extends ArrayAdapter<String> {
 	int length, chr;
 	foodItemList = new ArrayList<FoodItem>();
 
-	if (bundledFoodItemList != null) {
-	    // get the fooditemlist from the bundle
-	    foodTableSource = bundledFoodItemList.getString("foodTableSource");
-	    int amount = bundledFoodItemList.getInt("amountOfFoodItems");
-	    for (int count = 0;count < amount;count++) {
-		foodItemList.add(FoodItem.fromBundle(bundledFoodItemList.getBundle("fooditem"  + Integer.toString(count))));
-		// copied from to bundle bundledFoodItemList.putBundle("fooditem"  + Integer.toString(count), foodItemList.get(count).toBundle());
-	    }
-	} else { //get the fooditemlist from the source file on disk
 	    try {
 		if (D) Log.e(TAG, "Opening source foodfile");
 		is = resources.openRawResource(R.raw.foodfile);
@@ -502,8 +485,8 @@ public class FoodItemList extends ArrayAdapter<String> {
 	    } finally {
 		try { is.close();} catch (IOException e) {;}
 	    }
-	}
-	if (callingContext != null) {
+
+	    if (callingContext != null) {
 	    final Runnable runInUIThread = new Runnable() {
 		public void run() {
 		    updateList();
@@ -514,13 +497,6 @@ public class FoodItemList extends ArrayAdapter<String> {
 	    //now initialize lastIndex
 	    lastIndex[0] = foodItemList.size() - 1;
 	    Log.d(TAG,"lastIndex[0] = " + lastIndex[0] );
-	}
-	
-	//now put the whole fooditemlist object in a Bundle, this will not happen in the UIThread
-	//off course only do this of the bundle = null
-	if (bundledFoodItemList == null) {
-	    if (D) Log.e(TAG,"saving fooditemlist to Bundle");
-	    bundledFoodItemList = toBundle();
 	}
     }
 
@@ -709,11 +685,5 @@ public class FoodItemList extends ArrayAdapter<String> {
 	return returnvalue;
     }
     
-    /**
-     * @return the bundledFoodItemList
-     */
-    public Bundle getBundledFoodItemList() {
-	return bundledFoodItemList;
-    }
 }
 
