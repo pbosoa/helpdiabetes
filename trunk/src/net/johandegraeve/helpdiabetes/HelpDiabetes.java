@@ -26,6 +26,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -185,9 +186,10 @@ public class HelpDiabetes extends ListActivity {
      */
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
+	Intent newIntent;
 	switch (item.getItemId()) {
 	case R.id.ShowList_menu_item:
-	    Intent newIntent = new Intent(this, SelectedFoodItemList.class);
+	    newIntent = new Intent(this, SelectedFoodItemList.class);
 	    startActivity( newIntent);
 	    return true;
 	case R.id.EmptyList_menu_item:
@@ -207,6 +209,11 @@ public class HelpDiabetes extends ListActivity {
 		public void onClick(DialogInterface dialog, int whichButton) {;}
 	    })
 	    .show();
+	    return true;
+	case R.id.Settings_menu_item:
+	    newIntent = new Intent(this, MyPreferencesActivity.class);
+	    startActivity( newIntent);
+	    return true;
 	}
 	return super.onMenuItemSelected(featureId, item);
     }
@@ -260,6 +267,7 @@ public class HelpDiabetes extends ListActivity {
     public synchronized void onResume() {
         super.onResume();
         if(D) Log.e(TAG, "++ ON RESUME ++");
+        
     }
 
     /**

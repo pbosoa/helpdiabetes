@@ -37,7 +37,7 @@ public class SelectedFoodItem {
     /**
      * tag to be used by any method in this calss, when using {@link android.util.Log}
      */
-    private static final String LOG_TAG = "HD-SelectedFoodItem";
+    private static final String TAG = "SelectedFoodItem";
     
     /**
      * a fooditem
@@ -47,7 +47,7 @@ public class SelectedFoodItem {
     /**
      * the amount chosen 
      */
-    private float chosenAmount;
+    private double chosenAmount;
     
     /**
      * a fooditem can have multiple units, this points to the selected unit, counting starts at 0 
@@ -69,8 +69,7 @@ public class SelectedFoodItem {
      * @param chosenUnitNumber the unitNumber to which the SelectedFoodItem's chosenUnitNumber should be initialized, 
      * the first unit has number 0
      */
-    public SelectedFoodItem(FoodItem newFoodItem, float chosenAmount, int chosenUnitNumber) {
-	Log.i(LOG_TAG, "Creating SelectedFoodItem " + newFoodItem.getItemDescription());
+    public SelectedFoodItem(FoodItem newFoodItem, double chosenAmount, int chosenUnitNumber) {
 	this.foodItem = new FoodItem(newFoodItem);
 	this.chosenAmount = chosenAmount;
 	this.chosenUnitNumber = chosenUnitNumber;
@@ -86,8 +85,7 @@ public class SelectedFoodItem {
      * @param id the id to which the SelectedFoodItem's id should be initialized, 
      * the first unit has number 0
      */
-    public SelectedFoodItem(FoodItem newFoodItem, float chosenAmount, int chosenUnitNumber, long id) {
-	Log.i(LOG_TAG, "Creating SelectedFoodItem " + newFoodItem.getItemDescription());
+    public SelectedFoodItem(FoodItem newFoodItem, double chosenAmount, int chosenUnitNumber, long id) {
 	this.foodItem = new FoodItem(newFoodItem);
 	this.chosenAmount = chosenAmount;
 	this.chosenUnitNumber = chosenUnitNumber;
@@ -115,7 +113,7 @@ public class SelectedFoodItem {
     /**
      * @return the chosenAmount
      */
-    public float getChosenAmount() {
+    public double getChosenAmount() {
 	return chosenAmount;
     }
     
@@ -143,7 +141,7 @@ public class SelectedFoodItem {
     /**
      * @param chosenAmount
      */
-    public void setChosenAmount(float chosenAmount) {
+    public void setChosenAmount(double chosenAmount) {
 	this.chosenAmount = chosenAmount;
     }
     
@@ -168,7 +166,7 @@ public class SelectedFoodItem {
      */
     public Bundle toBundle() {
 	Bundle b = new Bundle();
-	b.putFloat("chosenAmount", chosenAmount);
+	b.putDouble("chosenAmount", chosenAmount);
 	b.putInt("chosenUnitNumber",chosenUnitNumber);
 	b.putBundle("foodItem", foodItem.toBundle());
 	b.putLong("id", id);
@@ -183,7 +181,7 @@ public class SelectedFoodItem {
     static public SelectedFoodItem fromBundle(Bundle b) {
 	SelectedFoodItem newSelectedFoodItem = 
 	    new SelectedFoodItem(FoodItem.fromBundle(b.getBundle("foodItem")),
-		                 b.getFloat("chosenAmount"),
+		                 b.getDouble("chosenAmount"),
 		                 b.getInt("chosenUnitNumber"));
 	newSelectedFoodItem.id = b.getLong("id");
 	return newSelectedFoodItem;
