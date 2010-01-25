@@ -35,7 +35,7 @@
 
 <string name="contains">contengono</string>
 
-<string name="amount_of_carbs">g di carboidati</string>
+<string name="amount_of_carbs">g di carboidrati</string>
 
 <string name="amount_of_fats">g di grassi</string>
 
@@ -75,7 +75,8 @@
 	the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n
 	Guarda la GNU General Public License per ulteriori dettagli.\n
 	Dovresti aver ricevuto una copia della GNU General Public License insieme a questo programma. 
-	In caso contrario, visita http://www.gnu.org/licenses/gpl.txt. </string>
+	In caso contrario, visita http://www.gnu.org/licenses/gpl.txt.\n 
+	Traduzione:  icobasco@zirak.com\n</string>
 	<string name="title_info_screen">About </string>
 	<string name="info_screen_title">About HelpDiabetes</string>
 	<string name="info_screen_message">è un contatore di carboidrati per diabetici.\n
@@ -89,7 +90,7 @@
     Per ulteriori informazioni, visita http://www.johandegraeve.net/android o invia una mail a
     johan.degraeve@johandegraeve.net.\n
     \n
-    Traduzione Enrico Allione - icobasco@zirak.com\n
+    Traduzione: icobasco@zirak.com\n
     Sorgente della tabella della composizione dei cibi:\n 
     </string>
     
