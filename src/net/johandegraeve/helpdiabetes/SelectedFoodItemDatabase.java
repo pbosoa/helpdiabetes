@@ -14,8 +14,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/gpl.txt>.
  *    
- *  Please contact Johan Degraeve at johan.degraeve@johandegraeve.net if you need
- *  additional information or have any questions.
+ *  Please contact  Johan Degraeve at johan.degraeve@johandegraeve.net if you need
+ *  additional information  or have any questions.
  */
 package net.johandegraeve.helpdiabetes;
 
@@ -97,15 +97,15 @@ public class SelectedFoodItemDatabase {
 	KEY_ID + " integer primary key autoincrement, " +
 	KEY_ITEMDESCRIPTION + " text not null, " + 
 	KEY_UNITDESCRIPTION + " text, " +
-	KEY_CARBS + " float, " +
-	KEY_FAT + " float, " +
-	KEY_PROTEIN + " float, " +
+	KEY_CARBS + " double, " +
+	KEY_FAT + " double, " +
+	KEY_PROTEIN + " double, " +
 	KEY_KCAL + " integer, " +
 	KEY_STANDARDAMOUNT + " integer, " + 
 	KEY_UNITWEIGHT + " integer, " +
 	KEY_TIMESTAMP + " text, " +
 	KEY_DELETED + " integer, " +
-	KEY_CHOSENAMOUNT + " float); ";
+	KEY_CHOSENAMOUNT + " double); ";
     
     /**
      * The context the application is running in, which cna be used for creating the database.
@@ -283,10 +283,10 @@ public class SelectedFoodItemDatabase {
 						        cursor.getInt(UnitWeightColumn), 
 					                cursor.getInt(StandardAmountColumn), 
 						        cursor.getInt(KcalColumn), 
-						        cursor.getFloat(ProteinColumn), 
-						        cursor.getFloat(CarbsColumn), 
-						        cursor.getFloat(FatColumn))),	          
-			          cursor.getFloat(ChosenAmountColumn), 
+						        cursor.getDouble(ProteinColumn), 
+						        cursor.getDouble(CarbsColumn), 
+						        cursor.getDouble(FatColumn))),	          
+			          cursor.getDouble(ChosenAmountColumn), 
 				  0,
 				  cursor.getInt(IdColumn));
 		      i = i  + 1;
@@ -327,13 +327,13 @@ public class SelectedFoodItemDatabase {
      * gets total amount of carbs for the selected FoodItems
      * @return total amount of carbs for the selected FoodItems
      */
-    public float getTotalCarbs() {
+    public double getTotalCarbs() {
 	SelectedFoodItem[] list = getSelectedFoodItemList();
 	
 	if (list == null) {
 	    return 0;
 	} else {
-	    float returnvalue = 0;
+	    double returnvalue = 0;
 	    for (int i = 0;i < list.length; i++ ) {
 		returnvalue = returnvalue +
 			list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getCarbs() *
@@ -345,17 +345,20 @@ public class SelectedFoodItemDatabase {
     }
 
     /**
-     * gets total amount of fats for the selected FoodItems
+     * Gets total amount of fats for the selected FoodItems. If any of the selected items has no fatvalue (ie -1) then the
+     * return value will be -1.
      * @return total amount of fats for the selected FoodItems
      */
-    public float getTotalFats() {
+    public double getTotalFats() {
 	SelectedFoodItem[] list = getSelectedFoodItemList();
 	
 	if (list == null) {
 	    return 0;
 	} else {
-	    float returnvalue = 0;
+	    double returnvalue = 0;
 	    for (int i = 0;i < list.length; i++ ) {
+		if (list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getFat() < 0) 
+		    return -1;
 		returnvalue = returnvalue +
 			list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getFat() *
 			list[i].getChosenAmount() /  
@@ -366,17 +369,20 @@ public class SelectedFoodItemDatabase {
     }
 
     /**
-     * gets total amount of kilocalories for the selected FoodItems
+     * gets total amount of kilocalories for the selected FoodItems. If any of the selected items has no fatvalue (ie -1) then the
+     * return value will be -1.
      * @return total amount of kilocalories for the selected FoodItems
      */
-    public float getTotalKcal() {
+    public double getTotalKcal() {
 	SelectedFoodItem[] list = getSelectedFoodItemList();
 	
 	if (list == null) {
 	    return 0;
 	} else {
-	    float returnvalue = 0;
+	    double returnvalue = 0;
 	    for (int i = 0;i < list.length; i++ ) {
+		if (list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getFat() < 0) 
+		    return -1;
 		returnvalue = returnvalue +
 			list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getKcal() *
 			list[i].getChosenAmount() /  
@@ -387,17 +393,20 @@ public class SelectedFoodItemDatabase {
     }
     
     /**
-     * gets total amount of proteins for the selected FoodItems
+     * gets total amount of proteins for the selected FoodItems. If any of the selected items has no fatvalue (ie -1) then the
+     * return value will be -1.
      * @return total amount of proteins for the selected FoodItems
      */
-    public float getTotalProteins() {
+    public double getTotalProteins() {
 	SelectedFoodItem[] list = getSelectedFoodItemList();
 	
 	if (list == null) {
 	    return 0;
 	} else {
-	    float returnvalue = 0;
+	    double returnvalue = 0;
 	    for (int i = 0;i < list.length; i++ ) {
+		if (list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getFat() < 0) 
+		    return -1;
 		returnvalue = returnvalue +
 			list[i].getFoodItem().getUnit(list[i].getChosenUnitNumber()).getProtein() *
 			list[i].getChosenAmount() /  

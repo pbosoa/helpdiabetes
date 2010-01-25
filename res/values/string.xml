@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright (C) 2009  Johan Degraeve
+  Copyright (C) 2010  Johan Degraeve
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 -->
 <resources>
 	<string name="version">Version"</string>
-	<string name="version_number">0.9.2</string>
+	<string name="version_number">1.0.0</string>
     <string name="app_name">HelpDiabetes</string>
 	<string name="maximumFoodItemLength">512</string>
 	<string name="maximumSearchStringLength">20</string>
@@ -75,4 +75,39 @@
     Source of the Food Composition Table :
     </string>
     
+    <!--  new texts added in version 1.0.0 -->
+    <string name="change_all_ratios">Assign the new value to all carb ratios ?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="notused">(not used)</string>
+    
+    <!--  new menu item in activity helpdiabetes -->
+    <string name="title_settings">Settings</string>
+    
+    <!--  text in screen showing calculations -->
+    <string name="insulin">Insulin</string>
+    <string name="insulinUnits">unit(s)</string>
+   	 
+    <!--  activity name for preferences-->
+    <string name="preferences_activity_name">Settings</string>
+    <!--  first category is the category for insulineratios (amounts of insulin/grams of carbs, timing breakfast to dinner etc. -->
+    	<!-- the title that comes as title of a category -->
+		<string name="preferences_insulinratios_title">Bolus calculation</string>
+	    	<!-- the title of a screen, also shown in the main preferences page -->
+	    	<!--  first the ratios -->
+			<string name="preferences_insulinratios">Ratios</string>
+                <string name="ratio_summary">grams of carbs per unit of insulin:</string>
+	    		<!-- first setting in this screen is the breakfastratio -->
+				<string name="breakfastratio_title">Breakfast</string>
+				<!-- Next meals .. -->
+                <string name="lunchratio_title">Lunch</string>
+                <string name="snackratio_title">Snack</string>
+                <string name="dinnerratio_title">Supper</string>    
+            <!--  then the meal times -->
+            <string name="meal_times">Meal Times</string>
+                <string name="breakfasttolunch_title">Breakfast until</string>  
+                <string name="lunchtosnack_title">Lunch until</string>  
+                <string name="snacktodinner_title">Snack until</string>  
+    <!--  second category is layout prameters -->
+    	<string name="preferences_layout_title">Layout</string>
 </resources>

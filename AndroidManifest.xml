@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="net.johandegraeve.helpdiabetes" android:versionCode="3"
-	android:versionName="0.9.2">
+	package="net.johandegraeve.helpdiabetes" android:versionCode="4"
+	android:versionName="1.0.0">
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
-		<activity android:name=".HelpDiabetes" android:label="@string/app_name"
+		<activity 
+			android:name=".HelpDiabetes" 
+			android:label="@string/app_name"
 			android:configChanges="orientation">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -19,7 +21,10 @@
 		<activity android:name=".ViewTotals" android:theme="@android:style/Theme.Dialog"
 			android:label="@string/view_totals_activity_name"
 			android:configChanges="orientation"/>
+		<activity android:name=".MyPreferencesActivity" android:theme="@android:style/Theme.Dialog"
+			android:label="@string/preferences_activity_name"
+			android:configChanges="orientation"/>
 	</application>
-	<uses-sdk android:minSdkVersion="3" />
+	<uses-sdk android:minSdkVersion="3"/>
 
 </manifest> 

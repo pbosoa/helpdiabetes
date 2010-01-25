@@ -18,8 +18,15 @@
  *  additional information or have any questions.
  */
 package net.johandegraeve.helpdiabetes;
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.format.Time;
+import android.util.Log;
 import android.widget.TextView;
 
 
@@ -31,10 +38,18 @@ import android.widget.TextView;
  *
  */
 public class ViewTotals extends Activity {
+    private static final String TAG = "ViewTotals";
+    /**
+     * set to true for debugging
+     */
+    private static final boolean D = true;;
+    
     /**
      * Textview to display the totals
      */
     TextView totals;
+    private double  insulinRatio;
+    private Calendar cal;
     
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -53,7 +68,13 @@ public class ViewTotals extends Activity {
 	totals = (TextView) findViewById(R.id.overview);
 	String toDisplay; 
   	SelectedFoodItemDatabase db1 = new SelectedFoodItemDatabase(this);
+  	long currentTime;
+  	String meal;
+  	long totalKcal = Math.round(db1.getTotalKcal());
+  	long totalFats= Math.round(db1.getTotalFats());
+  	long totalProteins= Math.round(db1.getTotalProteins());
 
+  	//first calculate amount of carbs, fats, proteins and kilocalories
 	toDisplay = 
 		 getResources().getString(R.string.the_selection_contains) +
 		 ": \n\n" +
@@ -61,22 +82,70 @@ public class ViewTotals extends Activity {
 		" " +
 		getResources().getString(R.string.amount_of_carbs) +
 		"\n" +
-		Math.round(db1.getTotalFats()) +
+		
+		//add fats 
+		(totalFats == -1 ? "": Math.round(db1.getTotalFats()) +
 		" " +
 		getResources().getString(R.string.amount_of_fats) +
-		"\n" +
-		Math.round(db1.getTotalProteins()) +
+		"\n") +
+		
+		//add proteins
+		(totalProteins == -1 ? "": Math.round(db1.getTotalProteins()) +
 		" " +
 		getResources().getString(R.string.amount_of_proteins) +
-		"\n" +
-		Math.round(db1.getTotalKcal()) +
+		"\n") +
+		
+		//add kilocalories
+		(totalKcal == -1 ? "": Math.round(db1.getTotalKcal()) +
 		" " +
 		getResources().getString(R.string.amount_of_kcal) +
-		"\n";
-		
+		"\n");
+
+	//check which value should be used for meal and insulinratio
+	insulinRatio = 0;
+
+	//get the currentTime in milliseconds, local time
+        cal = Calendar.getInstance();
+        cal.set(Calendar.MONTH, Calendar.JANUARY);
+        cal.set( Calendar.DAY_OF_MONTH, 1 );
+        cal.set( Calendar.YEAR, 1970 );
+        cal.setTimeZone(TimeZone.getDefault());
+        currentTime = Preferences.timeAsStringToLong(cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE));
+        
+	if (currentTime < Preferences.getSwitchTimeBreakfastToLunch(this)) {
+	    insulinRatio = Preferences.getInsulinRatioBreakfast(this);
+	    meal = getResources().getString(R.string.breakfastratio_title);
+	}
+	else if (currentTime < Preferences.getSwitchTimeLunchToSnack(this)) {
+	    insulinRatio = Preferences.getInsulinRatioLunch(this);
+	    meal = getResources().getString(R.string.lunchratio_title);
+	}
+	else if (currentTime < Preferences.getSwitchTimeSnackToDinner(this)) {
+	    insulinRatio = Preferences.getInsulinRatioSnack(this);
+	    meal = getResources().getString(R.string.snackratio_title);
+	}
+	else {
+	    insulinRatio = Preferences.getInsulinRatioDinner(this);
+	    meal = getResources().getString(R.string.dinnerratio_title);
+	}
+
+	//now add the necessary amount of insulin if needed
+	if (insulinRatio > 0) {
+	    
+	    toDisplay = toDisplay +
+	    "\n" +
+	    meal +
+	    "\n" +
+	    getResources().getString(R.string.insulin) + 
+	    ": " +
+	    //round the number of units of insulin to 0.1
+	    ((double)Math.round(db1.getTotalCarbs()/insulinRatio * 10))/10 +
+	    " " +
+	    getResources().getString(R.string.insulinUnits);
+	    
+	}
 	totals.setText(toDisplay);
-
-
+	
     }
 
 }
