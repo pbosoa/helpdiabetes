@@ -19,11 +19,8 @@
  */
 package net.johandegraeve.helpdiabetes;
 
-import android.app.Activity;
 import android.content.Context;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 /**
  * 
@@ -35,10 +32,15 @@ import android.util.Log;
  *
  */
 public class Preferences {
+    /**
+     * used for logging
+     */
+    @SuppressWarnings("unused")
     private static final String TAG = "Preferences";
     /**
      * set to true for debugging
      */
+    @SuppressWarnings("unused")
     private static final boolean D = true;
     
     /**
@@ -104,11 +106,21 @@ public class Preferences {
      */
     public static final String DEFVALUE_TIME_SNACK_TO_DINNER = "17:00";
     
+    /**
+     * returns the insulin ratio for the specified meal
+     * @param ctx
+     * @return the insulin ratio for specific meal
+     */
     public static double getInsulinRatioBreakfast(Context ctx) {
 	return Double.parseDouble(PreferenceManager.getDefaultSharedPreferences(ctx)
 	.getString(KEY_INSULIN_RATIO_BREAKFAST, DEFVALUE_INSULIN_RATIO_BREAKFAST));
     }
     
+    /**
+     * set the ratio of the specified meal to the new value
+     * @param ctx the context necessary to get the defaultSharedPreferences
+     * @param newvalue
+     */
     public static void setInsulineRatioBreakFast(Context ctx,double newvalue) {
 	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit() 
@@ -116,11 +128,21 @@ public class Preferences {
 	.commit();
     }
     
+    /**
+     * returns the insulin ratio for the specified meal
+     * @param ctx
+     * @return the insulin ratio for specific meal
+     */
     public static double getInsulinRatioLunch(Context ctx) {
 	return Double.parseDouble(PreferenceManager.getDefaultSharedPreferences(ctx)
 		.getString(KEY_INSULIN_RATIO_LUNCH, DEFVALUE_INSULIN_RATIO_LUNCH));
     }
     
+    /**
+     * set the ratio of the specified meal to the new value
+     * @param ctx the context necessary to get the defaultSharedPreferences
+     * @param newvalue
+     */
     public static void setInsulineRatioLunch(Context ctx,double newvalue) {
 	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit() 
@@ -128,11 +150,21 @@ public class Preferences {
 	.commit();
     }
     
+    /**
+     * returns the insulin ratio for the specified meal
+     * @param ctx
+     * @return the insulin ratio for specific meal
+     */
     public static double getInsulinRatioSnack(Context ctx) {
 	return Double.parseDouble(PreferenceManager.getDefaultSharedPreferences(ctx)
 		.getString(KEY_INSULIN_RATIO_SNACK, DEFVALUE_INSULIN_RATIO_SNACK));
     }
     
+    /**
+     * set the ratio of the specified meal to the new value
+     * @param ctx the context necessary to get the defaultSharedPreferences
+     * @param newvalue
+     */
     public static void setInsulineRatioSnack(Context ctx,double newvalue) {
 	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit() 
@@ -140,11 +172,21 @@ public class Preferences {
 	.commit();
     }
     
+    /**
+     * returns the insulin ratio for the specified meal
+     * @param ctx
+     * @return the insulin ratio for specific meal
+     */
     public static double getInsulinRatioDinner(Context ctx) {
 	return Double.parseDouble(PreferenceManager.getDefaultSharedPreferences(ctx)
 		.getString(KEY_INSULIN_RATIO_DINNER, DEFVALUE_INSULIN_RATIO_DINNER));
     }
     
+    /**
+     * set the ratio of the specified meal to the new value
+     * @param ctx the context necessary to get the defaultSharedPreferences
+     * @param newvalue
+     */
     public static void setInsulineRatioDinner(Context ctx,double newvalue) {
 	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit() 
@@ -152,12 +194,22 @@ public class Preferences {
 	.commit();
     }
     
+    /**
+     * returns the insulin ratio for the specified meal
+     * @param ctx
+     * @return the insulin ratio for specific meal
+     */
     static long getSwitchTimeBreakfastToLunch(Context ctx) {
 	String time = PreferenceManager.getDefaultSharedPreferences(ctx)
 	.getString(KEY_TIME_BREAKFAST_TO_LUNCH, DEFVALUE_TIME_BREAKFAST_TO_LUNCH);
 	return timeAsStringToLong(time);
     }
     
+    /**
+     * set the ratio of the specified meal to the new value
+     * @param ctx the context necessary to get the defaultSharedPreferences
+     * @param newvalue
+     */
     public static void setSwitchTimeBreakfastToLunch(Context ctx,String newvalue) {
 	
 	PreferenceManager.getDefaultSharedPreferences(ctx)
@@ -165,24 +217,44 @@ public class Preferences {
 	.putString(KEY_TIME_BREAKFAST_TO_LUNCH, newvalue);
     }
     
+    /**
+     * returns the insulin ratio for the specified meal
+     * @param ctx
+     * @return the insulin ratio for specific meal
+     */
     public static long getSwitchTimeLunchToSnack(Context ctx) {
 	String time = PreferenceManager.getDefaultSharedPreferences(ctx)
 	.getString(KEY_TIME_LUNCH_TO_SNACK, DEFVALUE_TIME_LUNCH_TO_SNACK);
 	return timeAsStringToLong(time);
     }
     
+    /**
+     * set the switch time
+     * @param ctx the context necessary to get the defaultSharedPreferences
+     * @param newvalue
+     */
     public static void setSwitchTimeLunchToSnack(Context ctx,String newvalue) {
 	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit()
 	.putString(KEY_TIME_LUNCH_TO_SNACK, newvalue);
     }
     
+    /**
+     * returns the insulin ratio for the specified meal
+     * @param ctx
+     * @return the insulin ratio for specific meal
+     */
     public static long getSwitchTimeSnackToDinner(Context ctx) {
 	String time = PreferenceManager.getDefaultSharedPreferences(ctx)
 	.getString(KEY_TIME_SNACK_TO_DINNER, DEFVALUE_TIME_SNACK_TO_DINNER);
 	return timeAsStringToLong(time);
     }
     
+    /**
+     * set the switch time
+     * @param ctx the context necessary to get the defaultSharedPreferences
+     * @param newvalue
+     */
     public static void setSwitchTimeSnackToDinner(Context ctx,String newvalue) {
 	PreferenceManager.getDefaultSharedPreferences(ctx)
 	.edit()

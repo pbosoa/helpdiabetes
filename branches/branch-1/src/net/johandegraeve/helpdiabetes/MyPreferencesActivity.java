@@ -26,12 +26,9 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
-import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.TimePickerPreference;
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.TextView;
 
 /**
  * Place class description here
@@ -48,35 +45,84 @@ import android.widget.TextView;
  *
  */
 /**
- * PreferenceActivity class, as defined by Android. 
+ * PreferenceActivity class, as defined by Android.<br> 
  * Implements also OnSharedPreferenceChangeListener in order to change preference summaries as soon as any preference
- * changed.
+ * changed.<br>
+ * In this class breakfast = meal in the morning, lunch = meal at noon, snack = meal around 16  o'clock, dinner = meal in the evening
  *
  * @version 1.0
  * @author Johan Degraeve
  *
  */
 public class MyPreferencesActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
+    /**
+     * tag to be used by any method in this class, when using {@link android.util.Log}
+     */
     private static final String TAG = "PreferencesActivity";
     /**
-     * set to true for debugging
+     * set to true if logging should be enabled
      */
     private static final boolean D = true;
     
+    /**
+     * editTextPreference for insulinRatio breakfast
+     */
     EditTextPreference insulinRatioBreakFastEditTextPreference;
+    /**
+     * to create the summary text in the EditTextPreference
+     */
     String originalSummaryInsulinRatioBreakFastEditTextPreference;
+    /**
+     * editTextPreference for insulinRatio Lunch
+     */
     EditTextPreference insulinRatioLunchEditTextPreference;
+    /**
+     * to create the summary text in the EditTextPreference
+     */
     String originalSummaryInsulinRatioLunchEditTextPreference;
+    /**
+     * editTextPreference for insulinRatio snack
+     */
     EditTextPreference insulinRatioSnackEditTextPreference;
+    /**
+     * to create the summary text in the EditTextPreference
+     */
     String originalSummaryInsulinRatioSnackEditTextPreference;
+    /**
+     * editTextPreference for insulinRatio dinner
+     */
     EditTextPreference insulinRatioDinnerEditTextPreference;
+    /**
+     * to create the summary text in the EditTextPreference
+     */
     String originalSummaryInsulinRatioDinnerEditTextPreference;
     
+    /**
+     * timePickerPreference for switch time from breakfast to Lunch
+     * (before = breakfast, after = lunch)
+     */
     TimePickerPreference BreakFastToLunchTimePickerPref;
+    /**
+     * to create the summary text in the timePickerPreference
+     */
     String originalSummaryBreakFastToLunchTimePickerPref;
+    /**
+     * timePickerPreference for switch time from lunch to snack
+     * (before = lunch, after = snack)
+     */
     TimePickerPreference LunchToSnackTimePickerPref;
+    /**
+     * to create the summary text in the timePickerPreference
+     */
     String originalSummaryLunchToSnackTimePickerPref;
+    /**
+     * timePickerPreference for switch time from snack to dinner
+     * (before = snack, after = dinner)
+     */
     TimePickerPreference SnackToDinnerTimePickerPref;
+    /**
+     * to create the summary text in the timePickerPreference
+     */
     String originalSummarySnackToDinnerTimePickerPref;
 
     /**
@@ -101,14 +147,13 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences);
         
-        
         thisContext = this;
         
         setup();
     }
     
     /**
-     * general setup, initialization of Preferences and originalSummaries
+     * general setup, initialization of Preferences and original Summaries are set to values read from preferences.xml
      */
     private void setup() {
 	//initialize following EditTextPreferences and originalSummary because they are needed in onResume
@@ -177,14 +222,11 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
 		    originalSummarySnackToDinnerTimePickerPref, 
 		    Preferences.getSwitchTimeSnackToDinner(this));
 	}
-
-	
-	
     }
     
     /**
-     * Overriding necessary  to call registerOnSharedPreferenceChangeListener
-     * It is here that summaries will get correct initial values.
+     * Overriding necessary  to call registerOnSharedPreferenceChangeListener so that summaries can immediately be set to the
+     * correct values.
      * @see android.app.Activity#onResume()
      */
     @Override
@@ -248,8 +290,8 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
     /**
      * Sets the summmary of the preference. Goal is that the summary is built of the summary from preferences.xml
      * + a text containing the actual value of the preference.<br>
-     * In case theSetting =="0.0" then it will be replaced by a value indicating "not used".<br>
-     * It check also the value firstCall and if firstCall dialog pops up to ask of all ratios should get the new value.
+     * In case the ratio =="0.0" then it will be replaced by a value indicating "not used".<br>
+     * It also checks the value firstCall and if firstCall dialog pops up to ask of all ratios should get the new value.
      * @param preference The EditTextPreference of which the summary needs to be changed
      * @param originalSummary the originalsummary as was stored in preferences.xml
      * @param theSetting the value of the preference
