@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="net.johandegraeve.helpdiabetes" android:versionCode="6"
+	android:versionName="1.0.1">
+	<application android:icon="@drawable/icon" android:label="@string/app_name">
+		<activity 
+			android:name=".HelpDiabetes" 
+			android:label="@string/app_name"
+			android:configChanges="orientation">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".AddSelectFoodItem"
+			android:label="@string/add_selected_fooditem_activity_name"
+			android:configChanges="orientation"/>
+		<activity android:name=".SelectedFoodItemList"
+			android:label="@string/selected_food_item_list_activity_name"
+			android:configChanges="orientation"/>
+		<activity android:name=".ViewTotals" android:theme="@android:style/Theme.Dialog"
+			android:label="@string/view_totals_activity_name"
+			android:configChanges="orientation"/>
+		<activity android:name=".MyPreferencesActivity" android:theme="@android:style/Theme.Dialog"
+			android:label="@string/preferences_activity_name"
+			android:configChanges="orientation"/>
+	</application>
+	<uses-sdk android:minSdkVersion="3"/>
+
+</manifest> 
