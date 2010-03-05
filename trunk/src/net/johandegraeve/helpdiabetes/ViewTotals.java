@@ -1,5 +1,5 @@
 /*  
- *  Copyright (C) 2009  Johan Degraeve
+ *  Copyright (C) 2010  Johan Degraeve
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,15 +18,11 @@
  *  additional information or have any questions.
  */
 package net.johandegraeve.helpdiabetes;
-import java.sql.Date;
 import java.util.Calendar;
 import java.util.TimeZone;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.format.Time;
-import android.util.Log;
 import android.widget.TextView;
 
 
@@ -38,18 +34,21 @@ import android.widget.TextView;
  *
  */
 public class ViewTotals extends Activity {
+    /**
+     * used for logging
+     */
+    @SuppressWarnings("unused")
     private static final String TAG = "ViewTotals";
     /**
-     * set to true for debugging
+     * set to true for logging
      */
+    @SuppressWarnings("unused")
     private static final boolean D = true;;
     
     /**
      * Textview to display the totals
      */
     TextView totals;
-    private double  insulinRatio;
-    private Calendar cal;
     
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -62,18 +61,23 @@ public class ViewTotals extends Activity {
     }
     
     /**
-     * sets up the TextView, and sets text to totals for cabs, fats, proteins and kilocalories
+     * sets up the TextView, sets text to totals for cabs, fats, proteins and kilocalories,
+     * calculate needed insulin based on personal settings
      */
     private void setUpViews() {
-	totals = (TextView) findViewById(R.id.overview);
-	String toDisplay; 
-  	SelectedFoodItemDatabase db1 = new SelectedFoodItemDatabase(this);
-  	long currentTime;
+	Calendar cal;
+	long currentTime;
   	String meal;
+  	double  insulinRatio;
+	String toDisplay; 
+  	
+	SelectedFoodItemDatabase db1 = new SelectedFoodItemDatabase(this);
   	long totalKcal = Math.round(db1.getTotalKcal());
   	long totalFats= Math.round(db1.getTotalFats());
   	long totalProteins= Math.round(db1.getTotalProteins());
 
+  	totals = (TextView) findViewById(R.id.overview);
+	
   	//first calculate amount of carbs, fats, proteins and kilocalories
 	toDisplay = 
 		 getResources().getString(R.string.the_selection_contains) +

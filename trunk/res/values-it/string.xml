@@ -93,5 +93,37 @@
     Traduzione: icobasco@zirak.com\n
     Sorgente della tabella della composizione dei cibi:\n 
     </string>
+
+<string name="change_all_ratios">Assegno il nuovo valore a tutte le quantità di carboidrati?</string>
+<string name="yes">si</string>
+<string name="no">no</string>
+<string name="notused">(not usato)</string>
+<!-- new menu item in activity helpdiabetes -->
+<string name="title_settings">Impostazioni</string>
+<!-- text in screen showing calculations -->
+<string name="insulin">Insulina</string>
+<string name="insulinUnits">unità</string>
+<!-- activity name for preferences-->
+<string name="preferences_activity_name">Impostazioni</string>
+<!-- first category is the category for insulineratios (amounts of insulin/grams of carbs, timing breakfast to dinner etc. -->
+<!-- the title that comes as title of a category -->
+<string name="preferences_insulinratios_title">Calcolo del bolo</string>
+<!-- the title of a screen, also shown in the main preferences page -->
+<!-- first the ratios -->
+<string name="preferences_insulinratios">Quantità</string>
+<string name="ratio_summary">grammi di carboidrati per unità di insulina:</string>
+<!-- first setting in this screen is the breakfastratio -->
+<string name="breakfastratio_title">Colazione</string>
+<!-- Next meals .. -->
+<string name="lunchratio_title">Pranzo</string>
+<string name="snackratio_title">Snack</string>
+<string name="dinnerratio_title">Cena</string>
+<!-- then the meal times -->
+<!-- "until" means "fino a" but I didn't catch the real meaning of the phrases...I mean I translated like "Supper until: 8 o'clock" = "Cena fino a: 8pm" -->
+<string name="meal_times">Meal Times</string>
+<!-- "Meal Times" = "Tempo dei pasti" but in italian is strange as a title.... -->
+<string name="breakfasttolunch_title">Colazione fino a </string>
+<string name="lunchtosnack_title">Pranzo fino a</string>
+<string name="snacktodinner_title">Snack fino a</string>        
     
 </resources>

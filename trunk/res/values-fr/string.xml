@@ -20,7 +20,6 @@
 -->
 <resources>
     <string name="version">Version"</string>
-    <string name="version_number">1.0.0</string>
     <string name="app_name">HelpDiabetes</string>
     <string name="maximumFoodItemLength">512</string>
     <string name="maximumSearchStringLength">20</string>
@@ -77,7 +76,7 @@ Ce programme est un logiciel libre ; vous pouvez le redistribuer ou le
     </string>
     
     <!--  new texts added in version 1.0.0 -->
-    <string name="change_all_ratios">Assign the new value to all carb ratios ?</string>
+    <string name="change_all_ratios">Assigner la nouvelle valeur à tous les ratios de glucides?</string>
     <string name="yes">oui</string>
     <string name="no">non</string>
     <string name="notused">(pas utilisé)</string>
@@ -86,18 +85,18 @@ Ce programme est un logiciel libre ; vous pouvez le redistribuer ou le
     <string name="title_settings">Paramétrer</string>
     
     <!--  text in screen showing calculations -->
-    <string name="insulin">Insulin</string>
+    <string name="insulin">Insuline</string>
     <string name="insulinUnits">unités</string>
      
     <!--  activity name for preferences-->
     <string name="preferences_activity_name">Paramétrer</string>
     <!--  first category is the category for insulineratios (amounts of insulin/grams of carbs, timing breakfast to dinner etc. -->
         <!-- the title that comes as title of a category -->
-        <string name="preferences_insulinratios_title">Bolus calculation</string>
+        <string name="preferences_insulinratios_title">Calcul du bolus</string>
             <!-- the title of a screen, also shown in the main preferences page -->
             <!--  first the ratios -->
             <string name="preferences_insulinratios">Ratios</string>
-                <string name="ratio_summary">grams of carbs per unit of insulin:</string>
+                <string name="ratio_summary">grammes de glucides par unité d'insuline:</string>
                 <!-- first setting in this screen is the breakfastratio -->
                 <string name="breakfastratio_title">Petit Déjeuner</string>
                 <!-- Next meals .. -->
@@ -105,7 +104,7 @@ Ce programme est un logiciel libre ; vous pouvez le redistribuer ou le
                 <string name="snackratio_title">Goûter</string>
                 <string name="dinnerratio_title">Souper</string>    
             <!--  then the meal times -->
-            <string name="meal_times">Meal Times</string>
+            <string name="meal_times">Horaires des repas</string>
                 <string name="breakfasttolunch_title">Petit Déjeuner jusqu\'a</string>  
                 <string name="lunchtosnack_title">Dîner jusqu\'a</string>  
                 <string name="snacktodinner_title">Goûter jusqu\'a</string>  
