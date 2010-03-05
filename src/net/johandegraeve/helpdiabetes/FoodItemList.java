@@ -41,16 +41,12 @@ import android.widget.TextView;
  * This class manages a list of {@link net.johandegraeve.helpdiabetes.FoodItem FoodItems}.<br>
  * There is only one constructor, {@link #FoodItemList(Context, int, int)} which creates an empty FoodItemList.
  * When creating a FoodItemList with the constructor, then the caller must call {@link #initialize()} to get a populated FoodItemList.<br>
- * 
- * Any methods that need long time processing, are handled in a separate thread, called {@link #backgroundThread}. 
- * Currenthly, the only method running in the separate thread is {@link #initialize()}.<br>
- *  
+ * <br>
+ * Any methods that need long time processing, are handled in a separate thread, called {@link #backgroundThread} 
+ * for example {@link #initialize()}.<br>
  * When a method is called, and this method needs any kind of access to the {@link #foodItemList}, then it will first be checked
  * if the {@link #backgroundThread} is running and if yes, an error value will be returned to indicate that a retry should occur later.
- * In addition, in such cases, it will be possible to retrieve an error or warning string via the method  {@link #getWarningMessage()}, which
- * can be shown to the user.<br>
  * 
- * @version 2.0
  * @author Johan Degraeve
  */
 public class FoodItemList extends ArrayAdapter<String> {
@@ -118,12 +114,6 @@ public class FoodItemList extends ArrayAdapter<String> {
     private final Handler callingThreadHandler = new Handler();
     
     /**
-     * String that will be set by a method running in the background, will identify the task which is 
-     * ongoing. Returned by {@link #getWarningMessage()}
-     */
-    private String warningMessage;
-    
-    /**
      * Creates FoodItemList with an empty fooditemlist.<br>
      * @param context the calling Context
      * @param textViewResourceId the resourceid, necessary to call the super class
@@ -143,13 +133,6 @@ public class FoodItemList extends ArrayAdapter<String> {
 	previousSearchString = null;
     }
     
-    /**
-     * @return the {@link #warningMessage}
-     */
-    public String getWarningMessage() {
-	return warningMessage;
-    }
-
     /**
      * @return string array of Strings containing all {@link FoodItem#getItemDescription() FoodItemDescriptions} for 
      * all fooditems in the list.
@@ -309,7 +292,7 @@ public class FoodItemList extends ArrayAdapter<String> {
      * the first and last index are stored in the Array.
      *   
      * @param s CharSequence holding the string to which FoodItem's ItemDescription should be compared.
-     * @return the index if search was completed, -1 if search not completed.
+     * @return the index if search was completed, -1 if search not done.
      */
     public int getFirstMatchingItem (CharSequence s) {
 	
@@ -413,8 +396,7 @@ public class FoodItemList extends ArrayAdapter<String> {
     }
 
     /**
-     * initializes {@link #foodItemList}. If {@link #bundledFoodItemList} is null, then raw resource file will be 
-     * used as source. If {@link #bundledFoodItemList} not null then the bundle will be used.
+     * initializes {@link #foodItemList}. 
      * When finished, an update of the calling ActivityList will be done, by calling {@link #updateList()} in the UI Thread.
      */
     private void initialize()  {
@@ -481,7 +463,7 @@ public class FoodItemList extends ArrayAdapter<String> {
 		is.close();
 
 	    } catch (IOException e) {
-		Log.d ("FoodItemList.initialize", "Could not open Raw Resource file " +callingContext.getString(R.raw.foodfile), e);
+		Log.d ("Fo odItemList.initialize", "Could not open Raw Resource file " +callingContext.getString(R.raw.foodfile), e);
 	    } finally {
 		try { is.close();} catch (IOException e) {;}
 	    }
@@ -669,10 +651,10 @@ public class FoodItemList extends ArrayAdapter<String> {
     }
     
     /**
-     * puts the fooditemlist in a Bundle. Goal is that this Bundle can be used to recreate the list in stead of the source
-     * file on disk. So it will keep the fooditems and the foodTablesource
-     * @return the fooditemlist in a Bundle
+     * puts the fooditemlist and foodTablesource in a Bundle with respectively the keys amountOfFoodItems and the foodTableSource
+     * @return the fooditemlist and foodTableSource in a Bundle
      */
+    @SuppressWarnings("unused")
     private Bundle toBundle() {
     
 	Bundle returnvalue  = new Bundle();

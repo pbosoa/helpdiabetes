@@ -20,7 +20,6 @@
 package net.johandegraeve.helpdiabetes;
 
 import android.os.Bundle;
-import android.util.Log;
 
 /**
  * a SelectedFoodItem is a {@link net.johandegraeve.helpdiabetes.FoodItem}, a
@@ -37,6 +36,7 @@ public class SelectedFoodItem {
     /**
      * tag to be used by any method in this calss, when using {@link android.util.Log}
      */
+    @SuppressWarnings("unused")
     private static final String TAG = "SelectedFoodItem";
     
     /**
