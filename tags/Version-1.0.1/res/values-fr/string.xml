@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2010  Johan Degraeve
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/gpl.txt>.
+    
+  Please contact Johan Degraeve at johan.degraeve@johandegraeve.net if you need
+  additional information or have any questions.
+-->
+<resources>
+    <string name="version">Version"</string>
+    <string name="app_name">HelpDiabetes</string>
+    <string name="maximumFoodItemLength">512</string>
+    <string name="maximumSearchStringLength">20</string>
+<string name="main_no_items">..chargement de la base des aliments..</string>
+<string name="add_selected_fooditem_activity_name">Aliment sélectionné</string>
+<string name="selected_food_item_list_activity_name">Mes sélections</string>
+<string name="choseamnt">Choisissez la quantité :</string>
+<string name="result">Résultat :</string>
+<string name="contains">contient</string>
+<string name="amount_of_carbs">g de glucides</string>
+<string name="amount_of_fats">g de lipides</string>
+<string name="amount_of_proteins">g de protéines</string>
+<string name="amount_of_kcal">kilocalories</string>
+<string name="Save_chosen_amount">Ok</string>
+<string name="no_selected_items">La liste des aliments sélectionnés est vide.</string>
+<string name="title_showlist">Sélections</string>
+<string name="title_empty_list">vide</string>
+<string name="title_calculate_total">calculer</string>
+<string name="title_select_unit">Choisir l’unité</string>
+<string name="view_totals_activity_name">Mes aliments sélectionnés</string>
+<string name="the_selection_contains">La sélection contient</string>
+<string name="confirm_empty_list">Effacer mes sélections ?</string>
+<string name="licence_info">Contrat de licence</string>
+<string name="accept_license">Continuer</string>    
+<string name="license_message_part">est un calculateur de glucides pour les personnes atteintes de diabète.\n
+    \n
+    Copyright (C) 2010  Johan Degraeve\n
+    \n
+Ce programme est un logiciel libre ; vous pouvez le redistribuer ou le
+  modifier suivant les termes de la “GNU General Public License” telle que
+  publiée par la Free Software Foundation : soit la version 3 de cette
+  licence, soit (à votre gré) toute version ultérieure.\n
+  \n
+  Ce programme est distribué dans l’espoir qu’il vous sera utile, mais SANS
+  AUCUNE GARANTIE : sans même la garantie implicite de COMMERCIALISABILITÉ
+  ni d’ADÉQUATION À UN OBJECTIF PARTICULIER. Consultez la Licence Générale
+  Publique GNU pour plus de détails.\n
+  \n
+    Vous devriez avoir reçu une copie de la Licence Générale Publique GNU avec
+  ce programme ; si ce n’est pas le cas, consultez : http://www.gnu.org/licenses/gpl.txt.</string>
+    <string name="title_info_screen">A propos</string>
+    <string name="info_screen_title">A propos de HelpDiabetes </string>
+    <string name="info_screen_message"> est un calculateur de glucides pour les personnes atteintes de diabète
+    Copyright (C) 2010  Johan Degraeve
+    \n
+    Diffusé sous les termes de la "GNU General Public License" telle que
+    publiée par la Free Software Foundation : soit la version 3 de cette
+    licence, soit (à votre gré) toute version ultérieure.
+    \n
+    Pour en savoir plus, visitez http://www.johandegraeve.net/android ou envoyez un e-mail à
+    johan.degraeve@johandegraeve.net.\n
+    \n
+    Source de la base de données:
+    </string>
+    
+    <!--  new texts added in version 1.0.0 -->
+    <string name="change_all_ratios">Assigner la nouvelle valeur à tous les ratios de glucides?</string>
+    <string name="yes">oui</string>
+    <string name="no">non</string>
+    <string name="notused">(pas utilisé)</string>
+    
+    <!--  new menu item in activity helpdiabetes -->
+    <string name="title_settings">Paramétrer</string>
+    
+    <!--  text in screen showing calculations -->
+    <string name="insulin">Insuline</string>
+    <string name="insulinUnits">unités</string>
+     
+    <!--  activity name for preferences-->
+    <string name="preferences_activity_name">Paramétrer</string>
+    <!--  first category is the category for insulineratios (amounts of insulin/grams of carbs, timing breakfast to dinner etc. -->
+        <!-- the title that comes as title of a category -->
+        <string name="preferences_insulinratios_title">Calcul du bolus</string>
+            <!-- the title of a screen, also shown in the main preferences page -->
+            <!--  first the ratios -->
+            <string name="preferences_insulinratios">Ratios</string>
+                <string name="ratio_summary">grammes de glucides par unité d'insuline:</string>
+                <!-- first setting in this screen is the breakfastratio -->
+                <string name="breakfastratio_title">Petit Déjeuner</string>
+                <!-- Next meals .. -->
+                <string name="lunchratio_title">Dîner</string>
+                <string name="snackratio_title">Goûter</string>
+                <string name="dinnerratio_title">Souper</string>    
+            <!--  then the meal times -->
+            <string name="meal_times">Horaires des repas</string>
+                <string name="breakfasttolunch_title">Petit Déjeuner jusqu\'a</string>  
+                <string name="lunchtosnack_title">Dîner jusqu\'a</string>  
+                <string name="snacktodinner_title">Goûter jusqu\'a</string>  
+    <!--  second category is layout prameters -->
+        <string name="preferences_layout_title">Layout</string>
+</resources>

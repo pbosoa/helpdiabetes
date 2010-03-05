@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--   Copyright (C) 2010  Johan Degraeve
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/gpl.txt>.
+    
+  Please contact Johan Degraeve at johan.degraeve@johandegraeve.net if you need
+  additional information or have any questions.
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="center">
+    <PreferenceCategory android:title="@string/preferences_insulinratios_title">
+	    <PreferenceScreen android:title="@string/preferences_insulinratios">
+	        <PreferenceCategory android:title="@string/preferences_insulinratios">
+				<EditTextPreference
+					android:id="@+id/InsulinRatioBreakfastEditTextPreference"
+					android:title="@string/breakfastratio_title"
+					android:summary="@string/ratio_summary"
+					android:defaultValue="0"
+					android:persistent="true"
+					android:key="INSULIN_RATIO_BREAKFAST"
+					android:inputType="numberDecimal">
+				</EditTextPreference>
+	            <EditTextPreference
+	                android:id="@+id/InsulinRatioLunchEditTextPreference"
+	                android:title="@string/lunchratio_title"
+	                android:summary="@string/ratio_summary"
+	                android:defaultValue="0"
+	                android:persistent="true"
+	                android:key="INSULIN_RATIO_LUNCH"
+	                android:inputType="numberDecimal">
+	            </EditTextPreference>
+	            <EditTextPreference
+	                android:id="@+id/InsulinRatioSnackEditTextPreference"
+	                android:title="@string/snackratio_title"
+	                android:summary="@string/ratio_summary"
+	                android:defaultValue="0"
+	                android:persistent="true"
+	                android:key="INSULIN_RATIO_SNACK"
+	                android:inputType="numberDecimal">
+	            </EditTextPreference>
+	            <EditTextPreference
+	                android:id="@+id/InsulinRatioDinnerEditTextPreference"
+	                android:title="@string/dinnerratio_title"
+	                android:summary="@string/ratio_summary"
+	                android:defaultValue="0"
+	                android:persistent="true"
+	                android:key="INSULIN_RATIO_DINNER"
+	                android:inputType="numberDecimal">
+	            </EditTextPreference>
+			</PreferenceCategory>
+		</PreferenceScreen>
+		<PreferenceScreen android:title="@string/meal_times">
+            <PreferenceCategory android:title="@string/meal_times">
+              <TimePickerPreference
+                    android:id="@+id/BrekfastToLunchTimePickerPreference"
+                    android:title="@string/breakfasttolunch_title"
+                    android:persistent="true"
+                    android:key="TIME_BREAKFAST_TO_LUNCH">
+              </TimePickerPreference>
+              <TimePickerPreference
+                    android:id="@+id/LunchToSnackTimePickerPreference"
+                    android:title="@string/lunchtosnack_title"
+                    android:persistent="true"
+                    android:key="TIME_LUNCH_TO_SNACK">
+              </TimePickerPreference>
+              <TimePickerPreference
+                    android:id="@+id/SnackToDinnerTimePickerPreference"
+                    android:title="@string/snacktodinner_title"
+                    android:persistent="true"
+                    android:key="TIME_SNACK_TO_DINNER">
+              </TimePickerPreference>
+            </PreferenceCategory>
+        </PreferenceScreen>    
+    </PreferenceCategory>
+	<!-- not used for the moment PreferenceCategory android:title="@string/preferences_layout_title" -->
+    <!--  /PreferenceCategory -->
+</PreferenceScreen>
