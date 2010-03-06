@@ -29,7 +29,6 @@ import android.widget.TextView;
 /**
  * Activity to display the total amounts
  *
- * @version 1.0
  * @author Johan Degraeve
  *
  */
