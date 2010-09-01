@@ -463,7 +463,7 @@ public class FoodItemList extends ArrayAdapter<String> {
 		is.close();
 
 	    } catch (IOException e) {
-		Log.d ("Fo odItemList.initialize", "Could not open Raw Resource file " +callingContext.getString(R.raw.foodfile), e);
+		Log.d ("FoodItemList.initialize", "Could not open Raw Resource file " +callingContext.getString(R.raw.foodfile), e);
 	    } finally {
 		try { is.close();} catch (IOException e) {;}
 	    }
@@ -475,11 +475,11 @@ public class FoodItemList extends ArrayAdapter<String> {
 		}
 	    };
 	    callingThreadHandler.post(runInUIThread);
-	} else {
-	    //now initialize lastIndex
-	    lastIndex[0] = foodItemList.size() - 1;
-	    Log.d(TAG,"lastIndex[0] = " + lastIndex[0] );
-	}
+	    } else {
+		//now initialize lastIndex
+		lastIndex[0] = foodItemList.size() - 1;
+		Log.d(TAG,"lastIndex[0] = " + lastIndex[0] );
+	    }
     }
 
     /**

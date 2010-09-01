@@ -31,26 +31,11 @@ import android.preference.TimePickerPreference;
 import android.util.Log;
 
 /**
- * Place class description here
- *
- * @version 1.0
- * @author Johan Degraeve
- *
- */
-/**
- * Place class description here
- *
- * @version 1.0
- * @author Johan Degraeve
- *
- */
-/**
  * PreferenceActivity class, as defined by Android.<br> 
  * Implements also OnSharedPreferenceChangeListener in order to change preference summaries as soon as any preference
  * changed.<br>
  * In this class breakfast = meal in the morning, lunch = meal at noon, snack = meal around 16  o'clock, dinner = meal in the evening
  *
- * @version 1.0
  * @author Johan Degraeve
  *
  */
@@ -62,7 +47,7 @@ public class MyPreferencesActivity extends PreferenceActivity implements OnShare
     /**
      * set to true if logging should be enabled
      */
-    private static final boolean D = true;
+    private static final boolean D = false;
     
     /**
      * editTextPreference for insulinRatio breakfast
