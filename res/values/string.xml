@@ -116,7 +116,7 @@
     <string name="percentage_of_carbs">Percentage of carbs : </string>
     <string name="chosen_amount_own_food_item">Chosen Amount : </string>
     <string name ="title_own_food_item">Own Food Item</string>
-    <string name ="unit_name">Unit Name : </string>
+    <string name ="unit_name">Unit Name (per 100) : </string>
     <string name = "standard_unit_name">grams</string>
     <string name="own_food_item_activity_name">Own Food Item</string>
 </resources>

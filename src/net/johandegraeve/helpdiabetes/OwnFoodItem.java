@@ -75,7 +75,7 @@ public class OwnFoodItem extends Activity {
 		FoodItem foodItem = new FoodItem(
 			nameEditTextView.getText().toString(), 
 			new Unit(unitNameEditTextView.getText().toString(), 100, 100,-1,-1, percentage, -1));
-		SelectedFoodItem selectedFoodItem = new SelectedFoodItem(foodItem, (amount * percentage/100), 0);
+		SelectedFoodItem selectedFoodItem = new SelectedFoodItem(foodItem, amount, 0);
 		db.addSelectedFoodItem(selectedFoodItem);
 		finish();
 	    }
