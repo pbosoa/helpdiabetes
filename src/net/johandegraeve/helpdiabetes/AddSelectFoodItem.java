@@ -115,7 +115,7 @@ public class AddSelectFoodItem extends Activity{
      */
     private void SetupView() {
 	Intent startingIntent = getIntent();
-	double toCheckIfInt;
+	String[] units;
 
 	Bundle b = startingIntent.getExtras();
 	itIsANewItemToAdd = startingIntent.getBooleanExtra("isItaNewItemToAdd", true);
@@ -125,13 +125,19 @@ public class AddSelectFoodItem extends Activity{
 
 	    builder = new AlertDialog.Builder(this);
 	    builder.setTitle(getResources().getString(R.string.title_select_unit));
-	    String[] units = new String[selectedFoodItem.getFoodItem().getNumberOfUnits()];
+	    units = new String[selectedFoodItem.getFoodItem().getNumberOfUnits()];
 	    for (int i = 0; i<units.length;i++) {
 		units[i] = selectedFoodItem.getFoodItem().getUnit(i).getDescription();
 	    }
-	    builder.setSingleChoiceItems(units, selectedFoodItem.getChosenUnitNumber() ,new DialogInterface.OnClickListener() {
+	    builder.setItems(units, new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int item) {
 		        selectedFoodItem.setChosenUnitNumber(item);
+		        int amount;
+		        if ((amount = selectedFoodItem.getFoodItem().getUnit(selectedFoodItem.getChosenUnitNumber()).getStandardAmount()) == 100)
+		            selectedFoodItem.setChosenAmount(0);
+		        else
+		            selectedFoodItem.setChosenAmount(amount);
+		        updateChoseAmount();
 		        setStandardAmountViewText();
 		        calculateNewResultandUpdateView(choseamount.getText());
 		    }
@@ -147,20 +153,11 @@ public class AddSelectFoodItem extends Activity{
 
 	    choseamount = (EditText) findViewById(R.id.choseamnt_edittext);
 	    if (choseamount != null) {
-		if (selectedFoodItem.getChosenAmount() == 0) {
-		    ;
-		} else {
-		    toCheckIfInt = selectedFoodItem.getChosenAmount() - new Double(selectedFoodItem.getChosenAmount()).intValue();
-		    if (toCheckIfInt == 0.0) {
-			String temp = new Double(selectedFoodItem.getChosenAmount()).toString();
-			int index = temp.indexOf('.');
-			if (index < 0) index = temp.length() - 1;
-			choseamount.setText(new Double(selectedFoodItem.getChosenAmount()).toString().substring(0, index));
-		    }
-		    else
-			choseamount.setText(Double.toString(selectedFoodItem.getChosenAmount()));
-		}
+		
+		updateChoseAmount();
+		
 		calculateNewResultandUpdateView(choseamount.getText());
+		
 		choseamount.addTextChangedListener(new TextWatcher() {
 
 		    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -209,8 +206,12 @@ public class AddSelectFoodItem extends Activity{
 	        }
 	    }
 	    );
+	    
+	    //now if the list of units is larger dan 1 then show immediately the list
+	    if (units.length > 1)
+		builder.show();
 
-	}
+	} /* there's no else branch, b should always be != null  */
     }
 
     /**
@@ -338,5 +339,24 @@ public class AddSelectFoodItem extends Activity{
 	return result;
     }
 
-
+    /**
+     * updates the edittextfield {@link #updateChoseAmount()}, based on value of {@link #selectedFoodItem.getChosenAmount}
+     */
+    private void updateChoseAmount() {
+	double toCheckIfInt;
+	if (selectedFoodItem.getChosenAmount() == 0) {
+	    choseamount.setText("0");
+	} else {
+	    toCheckIfInt = selectedFoodItem.getChosenAmount() - new Double(selectedFoodItem.getChosenAmount()).intValue();
+	    if (toCheckIfInt == 0.0) {//choseamount is is an integer value
+		String temp = new Double(selectedFoodItem.getChosenAmount()).toString();
+		int index = temp.indexOf('.');
+		if (index < 0) index = temp.length() - 1;
+		choseamount.setText(new Double(selectedFoodItem.getChosenAmount()).toString().substring(0, index));
+	    }
+	    else
+		choseamount.setText(Double.toString(selectedFoodItem.getChosenAmount()));
+	}
+	choseamount.setSelection(choseamount.getText().length());
+    }
 }

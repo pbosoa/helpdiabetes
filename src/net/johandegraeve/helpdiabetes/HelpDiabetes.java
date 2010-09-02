@@ -213,6 +213,10 @@ public class HelpDiabetes extends ListActivity {
 	    newIntent = new Intent(this, MyPreferencesActivity.class);
 	    startActivity( newIntent);
 	    return true;
+	case R.id.OwnFoodItem_menu_item:
+	    newIntent = new Intent(this,OwnFoodItem.class);
+	    startActivity(newIntent);
+	    return true;
 	}
 	return super.onMenuItemSelected(featureId, item);
     }

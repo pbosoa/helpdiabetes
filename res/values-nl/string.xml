@@ -109,5 +109,13 @@ ontvangen samen met dit programma. Als dat niet het geval is, zie http://www.gnu
     <!--  second category is layout prameters -->
         <string name="preferences_layout_title">Layout</string>
     
+    <!--  new texts added in version 1.2.0 for supported of own fooditem -->
+    <string name="name">Naam : </string>
+    <string name="percentage_of_carbs">% koolhydraten : </string>
+    <string name="chosen_amount_own_food_item">Gewicht : </string>
+    <string name ="title_own_food_item">Eigen voedingsmiddel</string>
+    <string name ="unit_name">Eenheid (per 100) : </string>
+    <string name = "standard_unit_name">gram</string>
+    <string name="own_food_item_activity_name">Eigen voedingsmiddel</string>
 
 </resources>

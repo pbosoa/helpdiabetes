@@ -29,4 +29,6 @@
 		android:title="@string/title_info_screen" />
 	<item android:id="@+id/Settings_menu_item"
 		android:title="@string/title_settings" />
+    <item android:id="@+id/OwnFoodItem_menu_item"
+        android:title="@string/title_own_food_item" />
 </menu>
