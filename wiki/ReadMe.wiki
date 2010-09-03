@@ -1,4 +1,5 @@
 #summary Introducing HelpDiabetes. What HD may do for you. Everyday..
+#labels Featured,Phase-Deploy
 
 = Introduction =
 
