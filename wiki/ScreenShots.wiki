@@ -1,6 +1,8 @@
 #summary Some screenshots of HelpDiabetes..
 #labels Featured
 
+<font color="red">THIS PAGE IS UNDER CONSTRUCTION</font>
+
 = Main screen =
 
 
@@ -32,5 +34,3 @@ Recording all these informations may help you on keeping trace of your diabete. 
 http://code.google.com/images/code_sm.png
 
 Showing your status is not all. You can generate a web page (monthly we suggest) where you can read all records you provided. This will help you on showing your excursus to every doctor on planet.
-
-
