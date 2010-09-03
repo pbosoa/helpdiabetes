@@ -9,28 +9,43 @@ HelpDiabetes is a carb counter application. You measure the ingredients, enter t
 
 It may works for you acting the following ways..
 
-== Measure carbohydrates ==
-Users measure the ingredients, enter them in the application and it will calculate the amount of carbohydrates and also fats, proteins and kilocalories. It is the Android version of an existing application written for J2ME. Food composition tables are available in many languages : English, Dutch, French, Italian, Romanian, Spanish, German, Czech, Norwegian and Danish.
+ * *Measure carbohydrates*
+ Users measure the ingredients, enter them in the application and it will calculate the amount of carbohydrates and also fats, proteins and kilocalories. It is the Android version of an existing application written for J2ME. Food composition tables are available in many languages : English, Dutch, French, Italian, Romanian, Spanish, German, Czech, Norwegian and Danish.
 
-== Keep traces ==
-You can record your clicemic values and blood pressure. These record will produce a graphic that you can visualize to have a graphical state of your diabete. In future releases will be able to create a web page that you can export on your SD-Card and be showed to your doctor. You can create alarms to keep you notified, and help them on understanding your diabete situation just looking at you HD Widget. 
+ * *Keep traces* 
+ You can record your clicemic values and blood pressure. These record will produce a graphic that you can visualize to have a graphical state of your diabete. In future releases will be able to create a web page that you can export on your SD-Card and be showed to your doctor. You can create alarms to keep you notified, and help them on understanding your diabete situation just looking at you HD Widget. 
 
+ * *Produce graphs*
+ Whit all this information is usefull to have some graphs! A graph will better show you actual diabete status and also show how your blood pressure is working.
+
+More add on this project may suggested by using *Issue Page* .
 
 
 = Download =
 
 You can get HelpDiabetes in two ways. Make your choice..
 
-== Android App ==
-
-Use Android App available on Download page.
-It is called 'HelpDiabetes-XXX.apk' (where 'XXX' means 'version'). Since september 2010 this application is under hard update. This means that the current Android app may be not upgraded since JD decide to public it. Please consider to download *last stable release 1.2.0* or *join our team* to translate or suggest your adds. 
+ * *Android App*
+ Use Android App available on Download page. It is called 'HelpDiabetes-XXX.apk' (where 'XXX' means 'version'). Since september 2010 this application is under hard update. This means that the current Android app may be not upgraded since JD decide to public it. Please consider to download *last stable release 1.2.0* or *join our team* to translate or suggest your adds. 
 
 
-== Source Code ==
+ * *Source Code* 
+ To download our source you have to *use svn* :
 
-To download our source *you have to use svn* :
+ {{{
+ svn checkout http://helpdiabetes.googlecode.com/svn/trunk/ helpdiabetes-read-only
+ }}}
 
-{{{
-svn checkout http://helpdiabetes.googlecode.com/svn/trunk/ helpdiabetes-read-only
-}}}
+= Contribute = 
+If you like our job and you are already an Android developper join us! We need people to do all boring things like *debug*. Please consider to tell us every kind of bug you thing this software have. We'll be proud to search that bug.. and catch it! :)
+
+
+
+= Donate = 
+Before donate, we just like to explain this:
+Free Software is not free beer. Just like spending your time on doing something that goes to others around you (not just your self). If people may understand this, is not difficult to understand this:
+
+_if every person that do uses HelpDiabetes may give us an Euro, we will be reach!! But we do not write this app for that money. We like it to write to. If you use something free, you can also be free to offer us a beer. Like in freedom, if I do something good for you, you can do either. If you freely want._
+
+
+All we write is FREE SOFTWARE. But we spent time on writing it.. (what we call 'job'). Please consider to offer us a beer if you find this software usefull. If you can donate us 5E we'll think we are receaving 1E from all of your friend.
