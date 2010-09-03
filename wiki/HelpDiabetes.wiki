@@ -39,13 +39,3 @@ You can get HelpDiabetes in two ways. Make your choice..
 = Contribute = 
 If you like our job and you are already an Android developper join us! We need people to do all boring things like *debug*. Please consider to tell us every kind of bug you thing this software have. We'll be proud to search that bug.. and catch it! :)
 
-
-
-= Donate = 
-Before donate, we just like to explain this:
-Free Software is not free beer. Just like spending your time on doing something that goes to others around you (not just your self). If people may understand this, is not difficult to understand this:
-
-_if every person that do uses HelpDiabetes may give us an Euro, we will be reach!! But we do not write this app for that money. We like it to write to. If you use something free, you can also be free to offer us a beer. Like in freedom, if I do something good for you, you can do either. If you freely want._
-
-
-All we write is FREE SOFTWARE. But we spent time on writing it.. (what we call 'job'). Please consider to offer us a beer if you find this software usefull. If you can donate us 5E we'll think we are receaving 1E from all of your friend.
