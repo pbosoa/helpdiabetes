@@ -20,7 +20,7 @@
 -->
 <resources>
 	<string name="version">Version"</string>
-	<string name="version_number">2.0.0</string>
+	<string name="version_number">1.2.0</string>
     <string name="app_name">HelpDiabetes</string>
 	<string name="maximumFoodItemLength">512</string>
 	<string name="maximumSearchStringLength">20</string>
