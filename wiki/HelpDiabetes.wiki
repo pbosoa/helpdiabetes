@@ -1,5 +1,7 @@
+#summary What is HelpDiabetes?
 #labels Featured
-Carbohydrate counter for Android
+
+Carbohydrate counter and recorder. Blood pressure and glicemic values recorder. Alarm for you pills. Friendly interface with themes to not be bored on using it. 
 
 = Introduction =
 
@@ -7,3 +9,5 @@ HelpDiabetes is a carb counter application. You measure the ingredients, enter t
 
 = Stable Release =
 Our current stable release is *version 1.2.0*
+
+Keep in mind that *since september 2010 these wiki pages may describe features that are not present on latest stable release but ONLY SINCE in the next one.*
