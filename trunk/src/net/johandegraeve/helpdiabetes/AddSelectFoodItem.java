@@ -357,6 +357,7 @@ public class AddSelectFoodItem extends Activity{
 	    else
 		choseamount.setText(Double.toString(selectedFoodItem.getChosenAmount()));
 	}
+	//set the cursor at the end of the string
 	choseamount.setSelection(choseamount.getText().length());
     }
 }
