@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2010  Johan Degraeve
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/gpl.txt>.
+    
+  Please contact Johan Degraeve at johan.degraeve@johandegraeve.net if you need
+  additional information or have any questions.
+-->
+<resources>
+        <string name="version">Version"</string>
+    <string name="app_name">HelpDiabetes</string>
+        <string name="maximumFoodItemLength">512</string>
+        <string name="maximumSearchStringLength">20</string>
+        <string name="main_no_items">..cargando la tabla de alimentos..</string>
+        <string name="add_selected_fooditem_activity_name">Alimento Seleccionado</string>
+        <string name="selected_food_item_list_activity_name">Mis Selecciones</string>
+        <string name="choseamnt">Seleccione cantidad :</string>
+        <string name="result">Resultado :</string>
+        <string name="contains">contiene</string>
+        <string name="amount_of_carbs">gramos de carbos</string>
+        <string name="amount_of_fats">gramos de grasa</string>
+        <string name="amount_of_proteins">gramos of proteinas</string>
+        <string name="amount_of_kcal">kilocalorias</string>
+        <string name="Save_chosen_amount">Ok</string>
+        <string name="no_selected_items">'Mi Seleccion' esta vacia.</string>
+        <string name="title_showlist">Selecciones</string>
+        <string name="title_empty_list">Vacio</string>
+        <string name="title_calculate_total">Calcular</string>
+        <string name="title_select_unit">Selecione Unidad</string>
+        <string name="view_totals_activity_name">Total elementos seleccionado</string>
+        <string name="the_selection_contains">La seleccion contiene</string>
+        <string name="confirm_empty_list">Eliminar Mi Seleccion?</string>
+        <string name="licence_info">Acuerdo de Licencia</string>
+        <string name="accept_license">Continuar</string>
+        <string name="license_message_part">es un contador de carbo para personas con diabetes.\n
+        \n
+        Copyright (C) 2010  Johan Degraeve\n
+        \n
+        Este programa es un software libre: usted puede redistribuirlo y/o modificarlo
+    bajo los termino de la Licencia Publica General de GNU segun lo publicado por
+	la Free Software Foundation, ya sea por la version 3 de la licencia, o
+    (bajo su opcion) cualquier version posterior.
+	    \n
+    Este programa es distribuido con la esperanza que pueda resultar util
+	pero SIN NINGUNA GARANTIA; ni siquiera la garantia implicita de 
+	comercializacion o idoneidad para un proposito en particular. Consulte
+	la Licencia Publica General de GNU por mas detalles.	
+        \n\n
+    Usted debe haber recibido una copia de la Licencia Publica General de GNU
+	junto con este programa. Si no, vea http://www.gnu.org/licenses/gpl.txt.</string>
+        <string name="title_info_screen">Aceca de</string>
+        <string name="info_screen_title">Acerca de HelpDiabetes</string>
+        <string name="info_screen_message">es un contador de carbo para personas con diabetes.\n
+    Copyright (C) 2010  Johan Degraeve
+    \n
+    Distribuido bajo los terminos de la Licencia Publica General de GNU publicada
+	por la Free Software Foundation, tanto en la version 3, o cualquier version posterior
+	\n
+    Por mas informacion, visite: http://www.johandegraeve.net/android or send an e-mail to
+    johan.degraeve@johandegraeve.net.\n
+    \n
+    Fuente de la Tabla de Composicion de los Alimentos:
+	</string>
+    
+    <!--  new texts added in version 1.0.0 -->
+    <string name="change_all_ratios">Asignar los nuevos valores a todos los ratios de los Carbs?</string>
+    <string name="yes">si</string>
+    <string name="no">no</string>
+    <string name="notused">(no usado)</string>
+    
+    <!--  new menu item in activity helpdiabetes -->
+    <string name="title_settings">Seteos</string>
+    
+    <!--  text in screen showing calculations -->
+    <string name="insulin">Insulina</string>
+    <string name="insulinUnits">undad(es)</string>
+         
+    <!--  activity name for preferences-->
+    <string name="preferences_activity_name">Seteos</string>
+    <!--  first category is the category for insulineratios (amounts of insulin/grams of carbs, timing breakfast to dinner etc. -->
+        <!-- the title that comes as title of a category -->
+                <string name="preferences_insulinratios_title">Calcular Bolos</string>
+                <!-- the title of a screen, also shown in the main preferences page -->
+                <!--  first the ratios -->
+                        <string name="preferences_insulinratios">Ratios</string>
+                <string name="ratio_summary">gramos de carbos por unidad de insulina:</string>
+                        <!-- first setting in this screen is the breakfastratio -->
+                                <string name="breakfastratio_title">Desayuno</string>
+                                <!-- Next meals .. -->
+                <string name="lunchratio_title">Almuerzo</string>
+                <string name="snackratio_title">Merienda</string>
+                <string name="dinnerratio_title">Cena</string>    
+            <!--  then the meal times -->
+            <string name="meal_times">Horario Comidas</string>
+                <string name="breakfasttolunch_title">Desayuno hasta</string>  
+                <string name="lunchtosnack_title">Almuerzo hasta</string>  
+                <string name="snacktodinner_title">Merienda hasta</string>  
+    <!--  second category is layout prameters -->
+        <string name="preferences_layout_title">Dieño</string>
+
+    <!--  new texts added in version 1.2.0 for supported of own fooditem -->
+    <string name="name">Nombre : </string>
+    <string name="percentage_of_carbs">Percentaje de carbos : </string>
+    <string name="chosen_amount_own_food_item">Seleccione Cantidad : </string>
+    <string name ="title_own_food_item">Item Alimento Propio</string>
+    <string name ="unit_name">Nombre Unidades (por 100) : </string>
+    <string name = "standard_unit_name">gramos</string>
+    <string name="own_food_item_activity_name">Item Alimento Propio</string>
+</resources>
