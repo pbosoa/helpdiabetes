@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="net.johandegraeve.helpdiabetes" android:versionCode="10"
-	android:versionName="1.2.1">
-	
+	package="net.johandegraeve.helpdiabetes" android:versionCode="11"
+	android:versionName="1.2.2">
+	<supports-screens
+	  android:largeScreens="true"
+	  android:normalScreens="true"
+	  android:smallScreens="true"
+	  android:anyDensity="false">
+	</supports-screens>
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
 		<activity 
 			android:name=".HelpDiabetes" 
@@ -29,6 +34,6 @@
             android:label="@string/own_food_item_activity_name"
             android:configChanges="orientation"/>
 	</application>
-	<uses-sdk android:minSdkVersion="3"/>
+	<uses-sdk android:minSdkVersion="4"/>
 
 </manifest> 

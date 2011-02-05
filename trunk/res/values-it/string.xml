@@ -125,5 +125,14 @@
 <string name="breakfasttolunch_title">Colazione fino a </string>
 <string name="lunchtosnack_title">Pranzo fino a</string>
 <string name="snacktodinner_title">Snack fino a</string>        
+
+<string name="name">Nome : </string>
+<string name="percentage_of_carbs">percentuale di carboidrati : </string>
+<string name="chosen_amount_own_food_item">quantita’ scelta</string>
+<string name ="title_own_food_item">cibo personale</string>
+<string name ="unit_name">nome dell’unita’ (per 100) : </string>
+<string name = "standard_unit_name">grammi</string>
+<string name="own_food_item_activity_name">cibo personale</string>
+
     
 </resources>
