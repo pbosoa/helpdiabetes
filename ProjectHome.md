@@ -1,0 +1,3 @@
+HelpDiabetes is a carb counter application. Users measure the ingredients, enter them in the application and it will calculate  the amount of carbohydrates and also fats, proteins and kilocalories.
+It is the Android version of an existing application written for J2ME.
+Food composition tables are available in many languages : English, Dutch, French, Italian, Romanian, Spanish, German, Czech, Norwegian and Danish.
